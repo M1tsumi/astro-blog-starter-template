@@ -1,37 +1,19 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 80" role="img" aria-label="Future Voters Academy">
-  <!-- Background -->
-  <rect width="64" height="80" fill="#1b2a3b"/>
-  <!-- Top accent stripe -->
-  <rect width="64" height="4" fill="#2d4a6b"/>
-
-  <!-- Torch: outer flame -->
-  <path
-    d="M32,8 C38,13 41,20 39,27 C37.5,31 35,33.5 32,33.5 C29,33.5 26.5,31 25,27 C23,20 26,13 32,8 Z"
-    fill="rgba(255,255,255,0.92)"
-  />
-  <!-- Torch: inner flame (depth) -->
-  <path
-    d="M32,16 C34,19.5 35.5,23.5 34,27.5 C33.2,29.5 32.5,31 32,31 C31.5,31 30.8,29.5 30,27.5 C28.5,23.5 30,19.5 32,16 Z"
-    fill="#1b2a3b"
-    opacity="0.45"
-  />
-  <!-- Torch: handle -->
-  <rect x="29.5" y="33.5" width="5" height="11" fill="rgba(255,255,255,0.82)" rx="1"/>
-  <!-- Torch: crossbar base -->
-  <rect x="23.5" y="43.5" width="17" height="3" fill="rgba(255,255,255,0.5)" rx="0.75"/>
-
-  <!-- Divider line -->
-  <line x1="14" y1="54" x2="50" y2="54" stroke="rgba(255,255,255,0.18)" stroke-width="1"/>
-
-  <!-- FVA text -->
-  <text
-    x="32"
-    y="70"
-    font-family="Georgia, 'Times New Roman', serif"
-    font-size="18"
-    font-weight="700"
-    fill="white"
-    text-anchor="middle"
-    letter-spacing="2.5"
-  >FVA</text>
+﻿<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 80 80" role="img" aria-label="Future Voters Academy seal">
+  <!-- Outer filled circle -->
+  <circle cx="40" cy="40" r="39" fill="#1b2a3b"/>
+  <!-- Decorative inner rings -->
+  <circle cx="40" cy="40" r="36.5" fill="none" stroke="rgba(255,255,255,0.22)" stroke-width="1"/>
+  <circle cx="40" cy="40" r="32" fill="none" stroke="rgba(255,255,255,0.10)" stroke-width="0.75"/>
+  <!-- Three 5-pointed stars -->
+  <polygon points="22,22.5 23.1,25.5 26.3,25.6 23.8,27.6 24.6,30.6 22,28.9 19.4,30.6 20.2,27.6 17.7,25.6 20.9,25.5" fill="rgba(255,255,255,0.85)"/>
+  <polygon points="40,22.5 41.1,25.5 44.3,25.6 41.8,27.6 42.6,30.6 40,28.9 37.4,30.6 38.2,27.6 35.7,25.6 38.9,25.5" fill="rgba(255,255,255,0.85)"/>
+  <polygon points="58,22.5 59.1,25.5 62.3,25.6 59.8,27.6 60.6,30.6 58,28.9 55.4,30.6 56.2,27.6 53.7,25.6 56.9,25.5" fill="rgba(255,255,255,0.85)"/>
+  <!-- Rule below stars -->
+  <line x1="18" y1="34" x2="62" y2="34" stroke="rgba(255,255,255,0.28)" stroke-width="0.75"/>
+  <!-- FVA monogram -->
+  <text x="40" y="57" font-family="Georgia, 'Times New Roman', serif" font-size="23" font-weight="700" fill="white" text-anchor="middle" letter-spacing="3">FVA</text>
+  <!-- Rule below FVA -->
+  <line x1="18" y1="62" x2="62" y2="62" stroke="rgba(255,255,255,0.28)" stroke-width="0.75"/>
+  <!-- Subtitle -->
+  <text x="40" y="71" font-family="Georgia, 'Times New Roman', serif" font-size="5.2" fill="rgba(255,255,255,0.58)" text-anchor="middle" letter-spacing="1.4">CIVIC EDUCATION</text>
 </svg>

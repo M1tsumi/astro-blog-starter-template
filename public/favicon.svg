@@ -1,19 +1,6 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-label="Future Voters Academy">
-  <!-- Background -->
-  <rect width="64" height="64" fill="#1b2a3b"/>
-  <!-- Top accent stripe -->
-  <rect width="64" height="5" fill="#2d4a6b"/>
-  <!-- Bottom accent stripe -->
-  <rect y="59" width="64" height="5" fill="#2d4a6b"/>
-  <!-- FVA text -->
-  <text
-    x="32"
-    y="42"
-    font-family="Georgia, 'Times New Roman', serif"
-    font-size="26"
-    font-weight="700"
-    fill="white"
-    text-anchor="middle"
-    letter-spacing="1.5"
-  >FVA</text>
+﻿<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" role="img" aria-label="Future Voters Academy">
+  <rect width="32" height="32" fill="#1b2a3b"/>
+  <rect width="32" height="3" fill="#2d4a6b"/>
+  <rect y="29" width="32" height="3" fill="#2d4a6b"/>
+  <text x="16" y="22" font-family="Georgia, 'Times New Roman', serif" font-size="14" font-weight="700" fill="white" text-anchor="middle" letter-spacing="0.5">FVA</text>
 </svg>
