@@ -11,10 +11,21 @@ import { SITE_TITLE, SITE_DESCRIPTION } from '../consts';
 		<BaseHead title={SITE_TITLE} description={SITE_DESCRIPTION} />
 		<style>
 			.agency-banner {
-				background: rgb(var(--black));
+				background: linear-gradient(135deg, #0d1821 0%, #1b2a3b 55%, #2d4a6b 100%);
 				color: #ffffff;
-				padding: 2.5rem 1rem;
+				padding: 3rem 1rem;
 				text-align: center;
+				position: relative;
+			}
+			.agency-banner::after {
+				content: '';
+				display: block;
+				height: 4px;
+				background: var(--accent-warm);
+				position: absolute;
+				bottom: 0;
+				left: 0;
+				right: 0;
 			}
 			.agency-banner h1 {
 				color: #ffffff;
@@ -42,7 +53,7 @@ import { SITE_TITLE, SITE_DESCRIPTION } from '../consts';
 				font-size: 1rem;
 				text-transform: uppercase;
 				letter-spacing: 0.08em;
-				border-left: 4px solid rgb(var(--black));
+				border-left: 4px solid var(--accent-warm);
 				padding-left: 0.75rem;
 				margin-bottom: 1rem;
 			}
@@ -98,10 +109,14 @@ import { SITE_TITLE, SITE_DESCRIPTION } from '../consts';
 			}
 			.give-card {
 				border: 1px solid rgb(var(--gray-light));
-				border-top: 3px solid rgb(var(--black));
+				border-top: 3px solid var(--accent-warm);
 				padding: 1rem 1.25rem;
 				font-size: 0.9rem;
 				line-height: 1.8;
+				transition: box-shadow 0.15s ease;
+			}
+			.give-card:hover {
+				box-shadow: 0 3px 12px rgba(27, 42, 59, 0.1);
 			}
 			.give-card h3 {
 				font-size: 0.85rem;
@@ -127,15 +142,15 @@ import { SITE_TITLE, SITE_DESCRIPTION } from '../consts';
 				margin: 0;
 			}
 			.gofundme-cta {
-				border: 1px solid rgb(var(--gray-light));
-				border-top: 4px solid rgb(var(--black));
+				border: 1px solid #e8d8b8;
+				border-top: 4px solid var(--accent-warm);
 				padding: 2rem 2rem 1.75rem;
 				margin-bottom: 1.25rem;
 				display: flex;
 				align-items: center;
 				justify-content: space-between;
 				gap: 2rem;
-				background: #fafafa;
+				background: var(--accent-warm-light);
 			}
 			@media (max-width: 600px) {
 				.gofundme-cta {
@@ -158,21 +173,23 @@ import { SITE_TITLE, SITE_DESCRIPTION } from '../consts';
 			.gofundme-btn {
 				display: inline-block;
 				white-space: nowrap;
-				background: rgb(var(--black));
+				background: var(--accent);
 				color: #ffffff !important;
-				padding: 0.65rem 1.5rem;
+				padding: 0.7rem 1.75rem;
 				font-size: 0.8rem;
 				font-weight: 700;
 				text-transform: uppercase;
 				letter-spacing: 0.1em;
 				text-decoration: none !important;
-				border: 2px solid rgb(var(--black));
-				transition: background 0.15s, color 0.15s;
+				border: 2px solid var(--accent);
+				transition: background 0.18s, border-color 0.18s, color 0.18s;
 				flex-shrink: 0;
+				box-shadow: 0 2px 8px rgba(27, 42, 59, 0.18);
 			}
 			.gofundme-btn:hover {
-				background: transparent;
-				color: rgb(var(--black)) !important;
+				background: var(--accent-warm);
+				border-color: var(--accent-warm);
+				color: #ffffff !important;
 			}
 		</style>
 	</head>

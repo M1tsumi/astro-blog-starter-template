@@ -48,7 +48,7 @@ import { SITE_TITLE } from '../consts';
 	header {
 		margin: 0;
 		background: #ffffff;
-		border-bottom: 2px solid rgb(var(--black));
+		border-bottom: 3px solid var(--accent-warm);
 	}
 	nav {
 		display: flex;
@@ -115,10 +115,12 @@ import { SITE_TITLE } from '../consts';
 		transition: border-color 0.15s ease;
 	}
 	.nav-links a:hover {
-		border-bottom-color: rgb(var(--gray));
+		border-bottom-color: var(--accent-warm);
+		color: var(--accent-warm);
 	}
 	.nav-links a.active {
-		border-bottom-color: rgb(var(--black));
+		border-bottom-color: var(--accent-warm);
+		color: var(--accent);
 	}
 	.nav-links a:focus-visible {
 		outline: 3px solid var(--accent-mid);

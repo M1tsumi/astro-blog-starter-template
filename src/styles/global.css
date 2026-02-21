@@ -7,6 +7,8 @@
 	--accent: #1b2a3b;
 	--accent-dark: #0d1821;
 	--accent-mid: #2d4a6b;
+	--accent-warm: #b87412;       /* civic amber — energy, optimism, urgency */
+	--accent-warm-light: #fef4df; /* tint for warm-highlighted surfaces */
 	--black: 15, 18, 25;
 	--gray: 100, 108, 118;
 	--gray-light: 215, 218, 222;
@@ -14,7 +16,7 @@
 	--gray-dark: 30, 34, 40;
 	--white: 255, 255, 255;
 	--max-width: 860px;
-	--box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+	--box-shadow: 0 2px 8px rgba(27, 42, 59, 0.08);
 }
 @font-face {
 	font-family: "Atkinson";
@@ -38,7 +40,7 @@ body {
 	margin: 0;
 	padding: 0;
 	text-align: left;
-	background: #ffffff;
+	background: #fdfcfb; /* warm off-white — softer and more approachable than pure white */
 	word-wrap: break-word;
 	overflow-wrap: break-word;
 	color: rgb(var(--gray-dark));
@@ -82,12 +84,12 @@ b {
 	font-weight: 700;
 }
 a {
-	color: var(--accent);
+	color: var(--accent-mid);
 	text-decoration: underline;
 	text-underline-offset: 2px;
 }
 a:hover {
-	color: var(--accent-dark);
+	color: var(--accent-warm);
 }
 a:focus-visible {
 	outline: 3px solid var(--accent-mid);
@@ -140,7 +142,7 @@ pre > code {
 	all: unset;
 }
 blockquote {
-	border-left: 3px solid rgb(var(--gray));
+	border-left: 3px solid var(--accent-warm);
 	padding: 0 0 0 20px;
 	margin: 0px;
 	font-size: 1.1em;
