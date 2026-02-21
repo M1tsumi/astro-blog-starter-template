@@ -126,6 +126,54 @@ import { SITE_TITLE, SITE_DESCRIPTION } from '../consts';
 			.notice-box p:last-child {
 				margin: 0;
 			}
+			.gofundme-cta {
+				border: 1px solid rgb(var(--gray-light));
+				border-top: 4px solid rgb(var(--black));
+				padding: 2rem 2rem 1.75rem;
+				margin-bottom: 1.25rem;
+				display: flex;
+				align-items: center;
+				justify-content: space-between;
+				gap: 2rem;
+				background: #fafafa;
+			}
+			@media (max-width: 600px) {
+				.gofundme-cta {
+					flex-direction: column;
+					align-items: flex-start;
+				}
+			}
+			.gofundme-cta-text h3 {
+				font-size: 0.85rem;
+				text-transform: uppercase;
+				letter-spacing: 0.08em;
+				margin: 0 0 0.4rem 0;
+			}
+			.gofundme-cta-text p {
+				font-size: 0.9rem;
+				line-height: 1.7;
+				margin: 0;
+				color: rgb(var(--gray));
+			}
+			.gofundme-btn {
+				display: inline-block;
+				white-space: nowrap;
+				background: rgb(var(--black));
+				color: #ffffff !important;
+				padding: 0.65rem 1.5rem;
+				font-size: 0.8rem;
+				font-weight: 700;
+				text-transform: uppercase;
+				letter-spacing: 0.1em;
+				text-decoration: none !important;
+				border: 2px solid rgb(var(--black));
+				transition: background 0.15s, color 0.15s;
+				flex-shrink: 0;
+			}
+			.gofundme-btn:hover {
+				background: transparent;
+				color: rgb(var(--black)) !important;
+			}
 		</style>
 	</head>
 	<body>
@@ -184,6 +232,13 @@ import { SITE_TITLE, SITE_DESCRIPTION } from '../consts';
 
 			<div class="content-section">
 				<h2>Ways to Give</h2>
+				<div class="gofundme-cta">
+					<div class="gofundme-cta-text">
+						<h3>Support Us on GoFundMe</h3>
+						<p>Every contribution — large or small — goes directly toward free civic education in underserved communities.</p>
+					</div>
+					<a class="gofundme-btn" href="https://gofund.me/99ba920ef" target="_blank" rel="noopener noreferrer">Donate Now</a>
+				</div>
 				<div class="give-grid">
 					<div class="give-card">
 						<h3>One-Time Donation</h3>
