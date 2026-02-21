@@ -13,8 +13,11 @@ import { SITE_TITLE } from '../consts';
 	<nav aria-label="Primary navigation">
 		<div class="brand">
 			<a href="/" aria-label="Future Voters Academy home">
-				<span class="brand-name">{SITE_TITLE}</span>
-				<span class="brand-tagline">Nonpartisan Civic Education</span>
+				<img src="/fva-logo.svg" alt="" class="brand-logo" width="36" height="45" aria-hidden="true" />
+				<div class="brand-text">
+					<span class="brand-name">{SITE_TITLE}</span>
+					<span class="brand-tagline">Nonpartisan Civic Education</span>
+				</div>
 			</a>
 		</div>
 
@@ -63,9 +66,20 @@ import { SITE_TITLE } from '../consts';
 	}
 	.brand a {
 		display: flex;
-		flex-direction: column;
+		flex-direction: row;
+		align-items: center;
+		gap: 0.6rem;
 		text-decoration: none;
 		line-height: 1.2;
+	}
+	.brand-logo {
+		display: block;
+		flex-shrink: 0;
+		border-radius: 2px;
+	}
+	.brand-text {
+		display: flex;
+		flex-direction: column;
 	}
 	.brand-name {
 		font-size: 1.1rem;
