@@ -3,56 +3,167 @@ import HeaderLink from './HeaderLink.astro';
 import { SITE_TITLE } from '../consts';
 ---
 
+<a href="#main-content" class="skip-link">Skip to main content</a>
+
+<div class="gov-banner">
+	<span>An official website of Future Voters Academy &mdash; futurevotersacademy.org</span>
+</div>
+
 <header>
-	<nav>
-		<h2><a href="/">{SITE_TITLE}</a></h2>
-		<div class="internal-links">
+	<nav aria-label="Primary navigation">
+		<div class="brand">
+			<a href="/" aria-label="Future Voters Academy home">
+				<span class="brand-name">{SITE_TITLE}</span>
+				<span class="brand-tagline">Nonpartisan Civic Education</span>
+			</a>
+		</div>
+
+		<input type="checkbox" id="nav-toggle" class="nav-toggle" aria-hidden="true" />
+		<label for="nav-toggle" class="nav-toggle-label" aria-label="Toggle navigation">
+			<span></span><span></span><span></span>
+		</label>
+
+		<div class="nav-links">
 			<HeaderLink href="/">Home</HeaderLink>
 			<HeaderLink href="/about">About</HeaderLink>
 			<HeaderLink href="/programs">Programs</HeaderLink>
 			<HeaderLink href="/resources">Resources</HeaderLink>
 			<HeaderLink href="/contact">Contact</HeaderLink>
 		</div>
-
 	</nav>
 </header>
+
 <style>
+	.gov-banner {
+		background: var(--accent);
+		color: rgba(255, 255, 255, 0.88);
+		font-size: 0.72rem;
+		letter-spacing: 0.04em;
+		padding: 0.3rem 1rem;
+		text-align: center;
+	}
 	header {
 		margin: 0;
-		padding: 0 1em;
 		background: #ffffff;
 		border-bottom: 2px solid rgb(var(--black));
 	}
-	h2 {
-		margin: 0;
-		font-size: 1em;
-	}
-
-	h2 a,
-	h2 a.active {
-		text-decoration: none;
-	}
 	nav {
 		display: flex;
-		align-items: center;
+		align-items: stretch;
 		justify-content: space-between;
+		max-width: calc(var(--max-width) + 2em);
+		margin: 0 auto;
+		padding: 0 1em;
+		position: relative;
 	}
-	nav a {
-		padding: 1em 0.75em;
+	.brand {
+		display: flex;
+		align-items: center;
+		padding: 0.6rem 0;
+	}
+	.brand a {
+		display: flex;
+		flex-direction: column;
+		text-decoration: none;
+		line-height: 1.2;
+	}
+	.brand-name {
+		font-size: 1.1rem;
+		font-weight: 700;
+		letter-spacing: 0.02em;
+		color: rgb(var(--black));
+		text-transform: uppercase;
+	}
+	.brand-tagline {
+		font-size: 0.68rem;
+		letter-spacing: 0.08em;
+		text-transform: uppercase;
+		color: rgb(var(--gray));
+		margin-top: 0.1rem;
+	}
+	.nav-links {
+		display: flex;
+		align-items: stretch;
+	}
+	.nav-links a {
+		display: flex;
+		align-items: center;
+		padding: 0 0.75rem;
 		color: rgb(var(--black));
 		border-bottom: 3px solid transparent;
 		text-decoration: none;
-		font-size: 0.9em;
-		letter-spacing: 0.04em;
+		font-size: 0.78rem;
+		letter-spacing: 0.07em;
 		text-transform: uppercase;
+		font-weight: 600;
+		height: 100%;
+		box-sizing: border-box;
+		transition: border-color 0.15s ease;
 	}
-	nav a.active {
-		text-decoration: none;
+	.nav-links a:hover {
+		border-bottom-color: rgb(var(--gray));
+	}
+	.nav-links a.active {
 		border-bottom-color: rgb(var(--black));
 	}
+	.nav-links a:focus-visible {
+		outline: 3px solid var(--accent-mid);
+		outline-offset: -3px;
+	}
+	/* Mobile hamburger */
+	.nav-toggle {
+		display: none;
+	}
+	.nav-toggle-label {
+		display: none;
+	}
 	@media (max-width: 720px) {
-		.internal-links {
+		.nav-toggle-label {
+			display: flex;
+			flex-direction: column;
+			justify-content: center;
+			gap: 5px;
+			cursor: pointer;
+			padding: 0.75rem 0;
+		}
+		.nav-toggle-label span {
+			display: block;
+			width: 22px;
+			height: 2px;
+			background: rgb(var(--black));
+			transition: all 0.2s ease;
+		}
+		.nav-links {
 			display: none;
+			position: absolute;
+			top: 100%;
+			left: 0;
+			right: 0;
+			background: #ffffff;
+			border-top: 1px solid rgb(var(--gray-light));
+			border-bottom: 2px solid rgb(var(--black));
+			flex-direction: column;
+			z-index: 100;
+		}
+		.nav-links a {
+			padding: 0.85rem 1.25rem;
+			border-bottom: 1px solid rgb(var(--gray-light));
+			font-size: 0.85rem;
+		}
+		.nav-links a:last-child {
+			border-bottom: none;
+		}
+		.nav-toggle:checked ~ .nav-links {
+			display: flex;
+		}
+		.nav-toggle:checked + .nav-toggle-label span:nth-child(1) {
+			transform: rotate(45deg) translate(5px, 5px);
+		}
+		.nav-toggle:checked + .nav-toggle-label span:nth-child(2) {
+			opacity: 0;
+		}
+		.nav-toggle:checked + .nav-toggle-label span:nth-child(3) {
+			transform: rotate(-45deg) translate(5px, -5px);
 		}
 	}
 </style>

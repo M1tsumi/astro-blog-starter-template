@@ -3,30 +3,116 @@ const today = new Date();
 ---
 
 <footer>
-	&copy; {today.getFullYear()} Future Voters Academy. All rights reserved.
-	<div class="contact-link">
-		Contact: <a href="mailto:fva.info.contact@gmail.com">fva.info.contact@gmail.com</a>
-		&nbsp;|&nbsp;
-		<a href="/privacy">Privacy Policy</a>
+	<div class="footer-inner">
+		<div class="footer-col footer-brand">
+			<p class="footer-org">Future Voters Academy</p>
+			<p class="footer-mission">Raising funds for free, nonpartisan civic and political education in low-income neighborhoods.</p>
+			<p class="footer-status">Unincorporated Association &mdash; 501(c)(3) Pending</p>
+		</div>
+		<div class="footer-col">
+			<p class="footer-heading">Navigation</p>
+			<ul>
+				<li><a href="/">Home</a></li>
+				<li><a href="/about">About</a></li>
+				<li><a href="/programs">Programs</a></li>
+				<li><a href="/resources">Civic Resources</a></li>
+				<li><a href="/contact">Contact</a></li>
+			</ul>
+		</div>
+		<div class="footer-col">
+			<p class="footer-heading">Legal</p>
+			<ul>
+				<li><a href="/privacy">Privacy Policy</a></li>
+			</ul>
+			<p class="footer-heading" style="margin-top:1.5rem">Contact</p>
+			<ul>
+				<li><a href="mailto:fva.info.contact@gmail.com">fva.info.contact@gmail.com</a></li>
+				<li><a href="https://futurevotersacademy.org">futurevotersacademy.org</a></li>
+			</ul>
+		</div>
+	</div>
+	<div class="footer-bottom">
+		&copy; {today.getFullYear()} Future Voters Academy. All rights reserved.
 	</div>
 </footer>
+
 <style>
 	footer {
-		padding: 2em 1em;
 		background: rgb(var(--black));
 		color: rgb(var(--gray-light));
-		text-align: center;
-		font-size: 0.9em;
-		letter-spacing: 0.02em;
-		border-top: 3px solid rgb(var(--gray-dark));
+		border-top: 3px solid var(--accent-mid);
+		font-size: 0.88rem;
 	}
-	.contact-link {
-		margin-top: 0.5em;
+	.footer-inner {
+		display: grid;
+		grid-template-columns: 2fr 1fr 1fr;
+		gap: 2rem;
+		max-width: calc(var(--max-width) + 2em);
+		margin: 0 auto;
+		padding: 2.5rem 1rem 2rem;
 	}
-	.contact-link a {
-		color: rgb(var(--gray-light));
-	}
-	.contact-link a:hover {
+	.footer-org {
+		font-size: 1rem;
+		font-weight: 700;
+		text-transform: uppercase;
+		letter-spacing: 0.05em;
 		color: #ffffff;
+		margin: 0 0 0.5rem 0;
+	}
+	.footer-mission {
+		color: rgba(215, 218, 222, 0.8);
+		line-height: 1.6;
+		margin: 0 0 0.5rem 0;
+		font-size: 0.85rem;
+	}
+	.footer-status {
+		color: rgba(215, 218, 222, 0.55);
+		font-size: 0.78rem;
+		margin: 0;
+		letter-spacing: 0.02em;
+	}
+	.footer-heading {
+		font-size: 0.72rem;
+		text-transform: uppercase;
+		letter-spacing: 0.1em;
+		color: rgba(215, 218, 222, 0.55);
+		margin: 0 0 0.5rem 0;
+		padding-bottom: 0.35rem;
+		border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+	}
+	.footer-col ul {
+		list-style: none;
+		padding: 0;
+		margin: 0;
+	}
+	.footer-col ul li {
+		margin-bottom: 0.4rem;
+		font-size: 0.85rem;
+	}
+	.footer-col ul li:last-child {
+		margin-bottom: 0;
+	}
+	.footer-col a {
+		color: rgba(215, 218, 222, 0.85);
+		text-decoration: none;
+	}
+	.footer-col a:hover {
+		color: #ffffff;
+		text-decoration: underline;
+	}
+	.footer-bottom {
+		border-top: 1px solid rgba(255, 255, 255, 0.08);
+		text-align: center;
+		padding: 1rem;
+		font-size: 0.78rem;
+		color: rgba(215, 218, 222, 0.5);
+		letter-spacing: 0.02em;
+	}
+	@media (max-width: 720px) {
+		.footer-inner {
+			grid-template-columns: 1fr;
+			gap: 1.5rem;
+			padding: 2rem 1rem 1.5rem;
+		}
 	}
 </style>
