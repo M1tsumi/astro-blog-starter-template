@@ -1,51 +1,128 @@
 ---
-import Layout from '../layouts/BlogPost.astro';
+import BaseHead from '../components/BaseHead.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
 ---
 
-<Layout
-	title="About Future Voters Academy"
-	description="Learn about Future Voters Academy, our founder Thomas Cobb, and our mission to provide nonpartisan political education in low-income neighborhoods."
-	pubDate={new Date('February 20 2026')}
-	heroImage="/blog-placeholder-about.jpg"
->
-	<h2>Our Mission</h2>
-	<p>
-		Future Voters Academy (FVA) is an unincorporated association committed to raising funds for
-		nonpartisan political education in low-income neighborhoods across the country. We believe
-		that an informed electorate is the foundation of a healthy democracy — and that every person,
-		regardless of income or background, deserves access to high-quality civic education.
-	</p>
+<!doctype html>
+<html lang="en">
+	<head>
+		<BaseHead
+			title="About | Future Voters Academy"
+			description="Learn about Future Voters Academy, our founder Thomas Cobb, and our mission to provide nonpartisan political education in low-income neighborhoods."
+		/>
+		<style>
+			.page-header {
+				border-bottom: 2px solid rgb(var(--black));
+				padding-bottom: 1rem;
+				margin-bottom: 2rem;
+			}
+			.page-header h1 {
+				font-size: 1.8rem;
+				letter-spacing: 0.03em;
+				text-transform: uppercase;
+				margin: 0;
+			}
+			.page-header p {
+				margin: 0.25rem 0 0 0;
+				font-size: 0.95rem;
+				color: rgb(var(--gray));
+				letter-spacing: 0.02em;
+			}
+			section {
+				margin-bottom: 2.5rem;
+			}
+			section h2 {
+				font-size: 1rem;
+				text-transform: uppercase;
+				letter-spacing: 0.08em;
+				border-left: 4px solid rgb(var(--black));
+				padding-left: 0.75rem;
+				margin-bottom: 0.75rem;
+			}
+			section p {
+				margin: 0 0 0.75rem 0;
+				font-size: 0.95rem;
+				line-height: 1.8;
+			}
+			.contact-box {
+				border: 1px solid rgb(var(--gray-light));
+				border-left: 4px solid rgb(var(--black));
+				padding: 1.25rem 1.5rem;
+				background: #f9f9f9;
+				font-size: 0.95rem;
+			}
+			.contact-box a {
+				color: var(--accent);
+			}
+		</style>
+	</head>
+	<body>
+		<Header />
+		<main>
+			<div class="page-header">
+				<h1>About Future Voters Academy</h1>
+				<p>futurevotersacademy.org &mdash; An Unincorporated Association</p>
+			</div>
 
-	<h2>What We Do</h2>
-	<p>
-		FVA organizes workshops, distributes educational materials, and builds community partnerships
-		to deliver unbiased information about voting, government structure, civil rights, and the
-		electoral process. Our programming is strictly nonpartisan — we do not endorse any candidate,
-		party, or political ideology. Our only goal is an informed and empowered community.
-	</p>
-	<p>
-		We target our outreach to low-income neighborhoods that have historically been underserved by
-		traditional civic education efforts. By meeting people where they are, we help break down
-		barriers to political participation and cultivate the next generation of engaged citizens.
-	</p>
+			<section>
+				<h2>Mission</h2>
+				<p>
+					Future Voters Academy (FVA) is an unincorporated association committed to raising funds
+					for nonpartisan political education in low-income neighborhoods across the country. We
+					believe that an informed electorate is the foundation of a healthy democracy — and that
+					every person, regardless of income or background, deserves access to high-quality civic
+					education.
+				</p>
+				<p>
+					FVA is working toward official recognition as a nonprofit corporation so that we can
+					expand our programs and seek formal grant funding. Your support today helps make that
+					possible.
+				</p>
+			</section>
 
-	<h2>Our Founder</h2>
-	<p>
-		Future Voters Academy was founded by <strong>Thomas Cobb</strong>, a dedicated community
-		advocate who recognized the critical need for accessible, nonpartisan political education in
-		underserved communities. Thomas established FVA with the conviction that civic knowledge is a
-		right, not a privilege, and that empowering individuals with that knowledge creates lasting,
-		positive change in neighborhoods and beyond.
-	</p>
+			<section>
+				<h2>Programs &amp; Outreach</h2>
+				<p>
+					FVA organizes community workshops, distributes educational materials, and builds local
+					partnerships to deliver unbiased information about voting, government structure, civil
+					rights, and the electoral process. Our programming is strictly nonpartisan — we do not
+					endorse any candidate, party, or political ideology.
+				</p>
+				<p>
+					We focus our outreach on low-income neighborhoods that have historically been underserved
+					by traditional civic education efforts. By meeting people where they are, we help reduce
+					barriers to political participation and cultivate engaged, informed citizens.
+				</p>
+			</section>
 
-	<h2>Get Involved</h2>
-	<p>
-		Whether you want to volunteer, donate, or partner with us, we welcome your support. Every
-		contribution — large or small — helps us expand our reach and deliver meaningful civic
-		education to those who need it most.
-	</p>
-	<p>
-		Reach out to us at <a href="mailto:fva.info.contact@gmail.com">fva.info.contact@gmail.com</a>{' '}
-		or visit us at <a href="https://futurevotersacademy.org">futurevotersacademy.org</a>.
-	</p>
-</Layout>
+			<section>
+				<h2>Founder</h2>
+				<p>
+					Future Voters Academy was founded by <strong>Thomas Cobb</strong>, a community advocate
+					who recognized the critical need for accessible, nonpartisan political education in
+					underserved communities. Thomas established FVA on the conviction that civic knowledge is
+					a right, not a privilege.
+				</p>
+			</section>
+
+			<section>
+				<h2>Contact &amp; Support</h2>
+				<div class="contact-box">
+					<p>
+						To donate, volunteer, partner, or learn more about our programs, contact us directly:
+					</p>
+					<p>
+						<strong>Email:</strong>{' '}
+						<a href="mailto:fva.info.contact@gmail.com">fva.info.contact@gmail.com</a>
+					</p>
+					<p style="margin:0">
+						<strong>Website:</strong>{' '}
+						<a href="https://futurevotersacademy.org">futurevotersacademy.org</a>
+					</p>
+				</div>
+			</section>
+		</main>
+		<Footer />
+	</body>
+</html>
