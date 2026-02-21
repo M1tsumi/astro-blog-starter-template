@@ -1,0 +1,218 @@
+---
+import BaseHead from '../components/BaseHead.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+
+interface Props {
+	title: string;
+	subtitle?: string;
+	description: string;
+}
+
+const { title, subtitle, description } = Astro.props;
+---
+
+<!doctype html>
+<html lang="en">
+	<head>
+		<BaseHead title={`${title} | Future Voters Academy`} description={description} />
+		<style>
+			.page-header {
+				border-bottom: 2px solid rgb(var(--black));
+				padding-bottom: 1rem;
+				margin-bottom: 2.5rem;
+			}
+			.page-header h1 {
+				font-size: 1.8rem;
+				letter-spacing: 0.03em;
+				text-transform: uppercase;
+				margin: 0;
+			}
+			.page-header p {
+				margin: 0.25rem 0 0 0;
+				font-size: 0.9rem;
+				color: rgb(var(--gray));
+				letter-spacing: 0.02em;
+			}
+			section {
+				border-bottom: 1px solid rgb(var(--gray-light));
+				padding-bottom: 2rem;
+				margin-bottom: 2rem;
+			}
+			section:last-of-type {
+				border-bottom: none;
+			}
+			section h2 {
+				font-size: 1rem;
+				text-transform: uppercase;
+				letter-spacing: 0.08em;
+				border-left: 4px solid rgb(var(--black));
+				padding-left: 0.75rem;
+				margin-bottom: 1rem;
+			}
+			section p {
+				margin: 0 0 0.75rem 0;
+				font-size: 0.95rem;
+				line-height: 1.8;
+			}
+			section p:last-child {
+				margin: 0;
+			}
+			.info-box {
+				border: 1px solid rgb(var(--gray-light));
+				border-left: 4px solid rgb(var(--black));
+				padding: 1.25rem 1.5rem;
+				background: #f9f9f9;
+				font-size: 0.95rem;
+				line-height: 1.8;
+			}
+			.info-box p {
+				margin: 0 0 0.5rem 0;
+			}
+			.info-box p:last-child {
+				margin: 0;
+			}
+			.info-box a {
+				color: var(--accent);
+			}
+			.values-list {
+				list-style: none;
+				padding: 0;
+				margin: 0;
+			}
+			.values-list li {
+				font-size: 0.95rem;
+				line-height: 1.8;
+				padding: 0.75rem 0;
+				border-bottom: 1px solid rgb(var(--gray-light));
+			}
+			.values-list li:last-child {
+				border-bottom: none;
+			}
+			.values-list strong {
+				display: block;
+				text-transform: uppercase;
+				font-size: 0.8rem;
+				letter-spacing: 0.06em;
+				margin-bottom: 0.2rem;
+			}
+			.faq-list {
+				list-style: none;
+				padding: 0;
+				margin: 0;
+			}
+			.faq-list li {
+				padding: 1rem 0;
+				border-bottom: 1px solid rgb(var(--gray-light));
+				font-size: 0.95rem;
+				line-height: 1.8;
+			}
+			.faq-list li:last-child {
+				border-bottom: none;
+			}
+			.faq-list .q {
+				font-weight: 700;
+				display: block;
+				margin-bottom: 0.3rem;
+			}
+			.give-grid {
+				display: grid;
+				grid-template-columns: 1fr 1fr;
+				gap: 1rem;
+			}
+			@media (max-width: 600px) {
+				.give-grid {
+					grid-template-columns: 1fr;
+				}
+			}
+			.give-card {
+				border: 1px solid rgb(var(--gray-light));
+				border-top: 3px solid rgb(var(--black));
+				padding: 1rem 1.25rem;
+				font-size: 0.9rem;
+				line-height: 1.8;
+			}
+			.give-card h3 {
+				font-size: 0.85rem;
+				text-transform: uppercase;
+				letter-spacing: 0.06em;
+				margin: 0 0 0.4rem 0;
+			}
+			.give-card p {
+				margin: 0;
+			}
+			.steps-list {
+				list-style: none;
+				padding: 0;
+				margin: 0;
+				counter-reset: steps;
+			}
+			.steps-list li {
+				counter-increment: steps;
+				display: flex;
+				gap: 1rem;
+				padding: 0.75rem 0;
+				border-bottom: 1px solid rgb(var(--gray-light));
+				font-size: 0.95rem;
+				line-height: 1.8;
+				align-items: flex-start;
+			}
+			.steps-list li:last-child {
+				border-bottom: none;
+			}
+			.steps-list li::before {
+				content: counter(steps);
+				display: flex;
+				align-items: center;
+				justify-content: center;
+				min-width: 2rem;
+				height: 2rem;
+				background: rgb(var(--black));
+				color: #ffffff;
+				font-size: 0.8rem;
+				font-weight: 700;
+				flex-shrink: 0;
+			}
+			.contact-grid {
+				display: grid;
+				grid-template-columns: 1fr 1fr;
+				gap: 1rem;
+			}
+			@media (max-width: 600px) {
+				.contact-grid {
+					grid-template-columns: 1fr;
+				}
+			}
+			.contact-card {
+				border: 1px solid rgb(var(--gray-light));
+				border-top: 3px solid rgb(var(--black));
+				padding: 1rem 1.25rem;
+				font-size: 0.9rem;
+				line-height: 1.8;
+			}
+			.contact-card h3 {
+				font-size: 0.85rem;
+				text-transform: uppercase;
+				letter-spacing: 0.06em;
+				margin: 0 0 0.4rem 0;
+			}
+			.contact-card p {
+				margin: 0;
+			}
+			.contact-card a {
+				color: var(--accent);
+			}
+		</style>
+	</head>
+	<body>
+		<Header />
+		<main>
+			<div class="page-header">
+				<h1>{title}</h1>
+				{subtitle && <p>{subtitle}</p>}
+			</div>
+			<slot />
+		</main>
+		<Footer />
+	</body>
+</html>

@@ -9,10 +9,10 @@ import { SITE_TITLE } from '../consts';
 		<div class="internal-links">
 			<HeaderLink href="/">Home</HeaderLink>
 			<HeaderLink href="/about">About</HeaderLink>
+			<HeaderLink href="/programs">Programs</HeaderLink>
+			<HeaderLink href="/contact">Contact</HeaderLink>
 		</div>
-		<div class="contact-link">
-			<a href="mailto:fva.info.contact@gmail.com">Contact Us</a>
-		</div>
+
 	</nav>
 </header>
 <style>
@@ -49,13 +49,8 @@ import { SITE_TITLE } from '../consts';
 		text-decoration: none;
 		border-bottom-color: rgb(var(--black));
 	}
-	.contact-link,
-	.contact-link a {
-		display: flex;
-		align-items: center;
-	}
 	@media (max-width: 720px) {
-		.contact-link {
+		.internal-links {
 			display: none;
 		}
 	}

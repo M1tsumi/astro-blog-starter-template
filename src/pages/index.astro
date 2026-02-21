@@ -25,7 +25,7 @@ import { SITE_TITLE, SITE_DESCRIPTION } from '../consts';
 			}
 			.agency-banner p {
 				margin: 0;
-				font-size: 0.95rem;
+				font-size: 0.9rem;
 				letter-spacing: 0.04em;
 				color: rgb(var(--gray-light));
 				text-transform: uppercase;
@@ -44,29 +44,87 @@ import { SITE_TITLE, SITE_DESCRIPTION } from '../consts';
 				letter-spacing: 0.08em;
 				border-left: 4px solid rgb(var(--black));
 				padding-left: 0.75rem;
-				margin-bottom: 0.75rem;
+				margin-bottom: 1rem;
 			}
 			.content-section p {
 				font-size: 0.95rem;
 				line-height: 1.8;
 				margin: 0 0 0.75rem 0;
 			}
-			.donation-box {
-				border: 1px solid rgb(var(--gray-light));
-				border-left: 4px solid rgb(var(--black));
-				padding: 1.5rem;
-				background: #f9f9f9;
-			}
-			.donation-box p {
-				margin: 0 0 0.5rem 0;
-				font-size: 0.95rem;
-				line-height: 1.8;
-			}
-			.donation-box p:last-child {
+			.content-section p:last-child {
 				margin: 0;
 			}
-			.donation-box a {
-				color: var(--accent);
+			.steps-list {
+				list-style: none;
+				padding: 0;
+				margin: 0;
+				counter-reset: steps;
+			}
+			.steps-list li {
+				counter-increment: steps;
+				display: flex;
+				gap: 1rem;
+				padding: 0.75rem 0;
+				border-bottom: 1px solid rgb(var(--gray-light));
+				font-size: 0.95rem;
+				line-height: 1.8;
+				align-items: flex-start;
+			}
+			.steps-list li:last-child {
+				border-bottom: none;
+			}
+			.steps-list li::before {
+				content: counter(steps);
+				display: flex;
+				align-items: center;
+				justify-content: center;
+				min-width: 2rem;
+				height: 2rem;
+				background: rgb(var(--black));
+				color: #ffffff;
+				font-size: 0.8rem;
+				font-weight: 700;
+				flex-shrink: 0;
+			}
+			.give-grid {
+				display: grid;
+				grid-template-columns: 1fr 1fr;
+				gap: 1rem;
+			}
+			@media (max-width: 600px) {
+				.give-grid {
+					grid-template-columns: 1fr;
+				}
+			}
+			.give-card {
+				border: 1px solid rgb(var(--gray-light));
+				border-top: 3px solid rgb(var(--black));
+				padding: 1rem 1.25rem;
+				font-size: 0.9rem;
+				line-height: 1.8;
+			}
+			.give-card h3 {
+				font-size: 0.85rem;
+				text-transform: uppercase;
+				letter-spacing: 0.06em;
+				margin: 0 0 0.4rem 0;
+			}
+			.give-card p {
+				margin: 0;
+			}
+			.notice-box {
+				border: 1px solid rgb(var(--gray-light));
+				border-left: 4px solid rgb(var(--black));
+				padding: 1.25rem 1.5rem;
+				background: #f9f9f9;
+				font-size: 0.9rem;
+				line-height: 1.8;
+			}
+			.notice-box p {
+				margin: 0 0 0.5rem 0;
+			}
+			.notice-box p:last-child {
+				margin: 0;
 			}
 		</style>
 	</head>
@@ -74,7 +132,7 @@ import { SITE_TITLE, SITE_DESCRIPTION } from '../consts';
 		<Header />
 		<div class="agency-banner">
 			<h1>Future Voters Academy</h1>
-			<p>Nonpartisan Civic Education &mdash; futurevotersacademy.org</p>
+			<p>Nonpartisan Civic Education | futurevotersacademy.org</p>
 		</div>
 		<main>
 			<div class="content-section">
@@ -87,34 +145,80 @@ import { SITE_TITLE, SITE_DESCRIPTION } from '../consts';
 				</p>
 				<p>
 					FVA is currently seeking donations and community support as we work toward becoming a
-					registered nonprofit corporation.
+					registered nonprofit corporation. All contributed funds go directly toward educational
+					programming and community outreach.
 				</p>
 			</div>
 
 			<div class="content-section">
 				<h2>Our Mission</h2>
 				<p>
-					Our mission is to raise funds and resources that go directly toward educational programs,
-					workshops, and materials that empower future voters — regardless of political affiliation
-					— to understand their rights, the electoral process, and how government works at every
-					level.
+					Future Voters Academy raises funds and resources to support educational programs,
+					workshops, and materials that help community members understand their rights, the
+					electoral process, and how government operates at the local, state, and federal level.
 				</p>
 				<p>
 					Low-income communities are consistently underserved in civic education. FVA exists to
-					close that gap by delivering accessible, unbiased information where it is needed most.
+					close that gap by delivering accurate, accessible, and unbiased information where it is
+					needed most.
 				</p>
 			</div>
 
 			<div class="content-section">
-				<h2>Support Our Work</h2>
-				<div class="donation-box">
+				<h2>How It Works</h2>
+				<ol class="steps-list">
+					<li>
+						<span><strong>Identify.</strong> We identify neighborhoods and communities with limited access to nonpartisan civic education resources.</span>
+					</li>
+					<li>
+						<span><strong>Develop.</strong> We produce plain-language educational materials covering voting rights, government structure, and the electoral process.</span>
+					</li>
+					<li>
+						<span><strong>Engage.</strong> We hold free community workshops and information sessions where residents can learn and ask questions.</span>
+					</li>
+					<li>
+						<span><strong>Grow.</strong> We build our donor base and pursue formal nonprofit recognition to expand programming capacity.</span>
+					</li>
+				</ol>
+			</div>
+
+			<div class="content-section">
+				<h2>Ways to Give</h2>
+				<div class="give-grid">
+					<div class="give-card">
+						<h3>One-Time Donation</h3>
+						<p>Make a direct contribution in any amount. Contact us at <a href="mailto:fva.info.contact@gmail.com">fva.info.contact@gmail.com</a> to arrange a donation.</p>
+					</div>
+					<div class="give-card">
+						<h3>Monthly Support</h3>
+						<p>Recurring monthly gifts provide reliable funding that allows FVA to plan and expand its programs over time.</p>
+					</div>
+					<div class="give-card">
+						<h3>Organizational Partnership</h3>
+						<p>Businesses and organizations can support FVA through direct contributions, in-kind resources, or co-sponsored events.</p>
+					</div>
+					<div class="give-card">
+						<h3>Volunteer</h3>
+						<p>Contribute your time and skills. We welcome educators, community organizers, and civic-minded professionals.</p>
+					</div>
+				</div>
+			</div>
+
+			<div class="content-section">
+				<h2>Nonprofit Status</h2>
+				<p>
+					FVA currently operates as an unincorporated association. We are actively pursuing
+					501(c)(3) nonprofit status, which will allow us to apply for government and foundation
+					grants, accept tax-deductible donations, and formalize our organizational structure.
+				</p>
+				<div class="notice-box">
 					<p>
-						FVA is funded entirely by donations from individuals and organizations who share our
-						commitment to an informed electorate. Every contribution — regardless of size — directly
-						supports nonpartisan voter education programs in underserved communities.
+						<strong>Notice:</strong> Until 501(c)(3) status is officially granted, donations to
+						Future Voters Academy are not tax-deductible. We appreciate your support as we work
+						through this process.
 					</p>
 					<p>
-						To make a donation or discuss partnership opportunities, contact us at{' '}
+						Financial records and organizational documents are available upon written request at{' '}
 						<a href="mailto:fva.info.contact@gmail.com">fva.info.contact@gmail.com</a>.
 					</p>
 				</div>
