@@ -20,8 +20,8 @@ import { SITE_TITLE } from '../consts';
 	header {
 		margin: 0;
 		padding: 0 1em;
-		background: white;
-		box-shadow: 0 2px 8px rgba(var(--black), 5%);
+		background: #ffffff;
+		border-bottom: 2px solid rgb(var(--black));
 	}
 	h2 {
 		margin: 0;
@@ -38,14 +38,17 @@ import { SITE_TITLE } from '../consts';
 		justify-content: space-between;
 	}
 	nav a {
-		padding: 1em 0.5em;
-		color: var(--black);
-		border-bottom: 4px solid transparent;
+		padding: 1em 0.75em;
+		color: rgb(var(--black));
+		border-bottom: 3px solid transparent;
 		text-decoration: none;
+		font-size: 0.9em;
+		letter-spacing: 0.04em;
+		text-transform: uppercase;
 	}
 	nav a.active {
 		text-decoration: none;
-		border-bottom-color: var(--accent);
+		border-bottom-color: rgb(var(--black));
 	}
 	.contact-link,
 	.contact-link a {
