@@ -2,7 +2,7 @@
 import BaseHead from '../components/BaseHead.astro';
 import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
-import { SITE_TITLE, SITE_DESCRIPTION } from '../consts';
+import { SITE_TITLE, SITE_DESCRIPTION, DONATE_URL, CONTACT_EMAIL, INSTAGRAM_URL } from '../consts';
 ---
 
 <!doctype html>
@@ -10,10 +10,6 @@ import { SITE_TITLE, SITE_DESCRIPTION } from '../consts';
 <head>
 <BaseHead title={SITE_TITLE} description={SITE_DESCRIPTION} />
 <style>
-/* ── Layout reset ──────────────────────────────────── */
-body > main { display: none; }
-
-/* ── Shared section ────────────────────────────────── */
 .section { width: 100%; }
 .inner {
   max-width: 1100px;
@@ -385,9 +381,10 @@ body > main { display: none; }
 </head>
 <body>
 <Header />
+<main id="main-content" aria-label="Main content">
 
 <!-- HERO -->
-<section class="hero" id="main-content" aria-label="Hero">
+<section class="hero" aria-label="Hero">
   <span class="hero-location">Pierce &amp; Ware Counties, Georgia</span>
   <h1>Empowering Communities Through Civic Education</h1>
   <p class="hero-sub">
@@ -395,7 +392,7 @@ body > main { display: none; }
     Every person deserves the knowledge to participate fully in their democracy.
   </p>
   <div class="hero-ctas">
-    <a class="btn-gold" href="https://gofund.me/99ba920ef" target="_blank" rel="noopener noreferrer">Donate Now</a>
+    <a class="btn-gold" href="/donate">Donate Now</a>
     <a class="btn-white" href="/about">Learn More</a>
   </div>
 </section>
@@ -486,12 +483,12 @@ body > main { display: none; }
         <h3>Support Us on GoFundMe</h3>
         <p>Any amount helps. Your donation goes straight to free civic education for communities that are too often left out of the conversation.</p>
       </div>
-      <a class="btn-gold" style="white-space:nowrap; flex-shrink:0;" href="https://gofund.me/99ba920ef" target="_blank" rel="noopener noreferrer">Donate Now</a>
+      <a class="btn-gold" style="white-space:nowrap; flex-shrink:0;" href="/donate">Donate Now</a>
     </div>
     <div class="give-grid">
       <div class="give-card">
         <h3>One-Time Donation</h3>
-        <p>Make a direct contribution in any amount. <a href="mailto:fva.info.contact@gmail.com">Contact us</a> to arrange a donation outside of GoFundMe.</p>
+        <p>Make a direct contribution in any amount. <a href={`mailto:${CONTACT_EMAIL}`}>Contact us</a> to arrange a donation outside of GoFundMe.</p>
       </div>
       <div class="give-card">
         <h3>Monthly Support</h3>
@@ -505,11 +502,11 @@ body > main { display: none; }
           <li><strong>In-kind support</strong> such as printing, venue space, or supplies</li>
           <li><strong>Co-sponsoring</strong> community workshops and events</li>
         </ul>
-        <p><a href="mailto:fva.info.contact@gmail.com?subject=Partnership Proposal">Reach out to start a conversation &rarr;</a></p>
+        <p><a href={`mailto:${CONTACT_EMAIL}?subject=Partnership Proposal`}>Reach out to start a conversation &rarr;</a></p>
       </div>
       <div class="give-card">
         <h3>Volunteer</h3>
-        <p>Contribute your time and skills. We welcome educators, community organizers, and civic-minded professionals. <a href="mailto:fva.info.contact@gmail.com?subject=Volunteer Interest">Get in touch &rarr;</a></p>
+        <p>Contribute your time and skills. We welcome educators, community organizers, and civic-minded professionals. <a href={`mailto:${CONTACT_EMAIL}?subject=Volunteer Interest`}>Get in touch &rarr;</a></p>
       </div>
     </div>
   </div>
@@ -529,7 +526,7 @@ body > main { display: none; }
       </p>
       <p>
         Financial records and organizational documents are available upon written request at{' '}
-        <a href="mailto:fva.info.contact@gmail.com">fva.info.contact@gmail.com</a>.
+        <a href={`mailto:${CONTACT_EMAIL}`}>{CONTACT_EMAIL}</a>.
       </p>
     </div>
   </div>
@@ -586,16 +583,17 @@ body > main { display: none; }
     <div class="connect-grid">
       <div class="connect-card">
         <h3>Follow on Instagram</h3>
-        <p><a href="https://www.instagram.com/futurevotersacademy" target="_blank" rel="noopener noreferrer">@futurevotersacademy</a> &mdash; updates, events, and civic education content.</p>
+        <p><a href={INSTAGRAM_URL} target="_blank" rel="noopener noreferrer">@futurevotersacademy</a> &mdash; updates, events, and civic education content.</p>
       </div>
       <div class="connect-card">
         <h3>Get Email Updates</h3>
-        <p>Email <a href="mailto:fva.info.contact@gmail.com?subject=Stay Connected">fva.info.contact@gmail.com</a> with subject line <strong>Stay Connected</strong> and we will add you to our list.</p>
+        <p>Email <a href={`mailto:${CONTACT_EMAIL}?subject=Stay Connected`}>{CONTACT_EMAIL}</a> with subject line <strong>Stay Connected</strong> and we will add you to our list.</p>
       </div>
     </div>
   </div>
 </section>
 
+</main>
 <Footer />
 </body>
 </html>

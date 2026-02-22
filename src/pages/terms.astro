@@ -1,0 +1,111 @@
+---
+import PageLayout from '../layouts/PageLayout.astro';
+import { CONTACT_EMAIL, SITE_URL } from '../consts';
+---
+
+<PageLayout
+	title="Terms of Use"
+	subtitle="Effective Date: February 22, 2026"
+	description="Terms of use for futurevotersacademy.org, operated by Future Voters Academy, an unincorporated association based in southern Georgia."
+>
+	<section>
+		<h2>Overview</h2>
+		<p>
+			These Terms of Use govern your access to and use of this website, futurevotersacademy.org
+			("the Site"), operated by Future Voters Academy ("FVA," "we," "us"). By accessing the
+			Site, you agree to these terms in full. If you do not agree to any part of these terms,
+			please do not use this Site.
+		</p>
+	</section>
+
+	<section>
+		<h2>Informational Purpose Only</h2>
+		<p>
+			All content published on this Site is provided for general informational and civic
+			education purposes only. Nothing on this Site constitutes legal advice, political advice,
+			or professional counsel of any kind. Information about voting eligibility, registration
+			procedures, and election rules may change; always verify current requirements with your
+			applicable state or local election authority.
+		</p>
+		<p>
+			FVA makes no warranties, express or implied, regarding the accuracy, completeness, or
+			timeliness of any content on this Site.
+		</p>
+	</section>
+
+	<section>
+		<h2>No Partisan Endorsement</h2>
+		<p>
+			Future Voters Academy is a strictly nonpartisan organization. Nothing on this Site
+			constitutes an endorsement of or opposition to any candidate, political party, ballot
+			measure, or political ideology. Educational content about how government and elections work
+			does not represent a political position by FVA.
+		</p>
+	</section>
+
+	<section>
+		<h2>External Links</h2>
+		<p>
+			This Site links to external government agencies, civic organizations, and third-party
+			websites solely as a public convenience. FVA does not control, endorse, or take
+			responsibility for the content, accuracy, privacy practices, or availability of any
+			external site. External links are provided without warranty of any kind.
+		</p>
+		<p>
+			If you encounter a broken or inappropriate external link, please notify us at{' '}
+			<a href={`mailto:${CONTACT_EMAIL}?subject=Resource Correction`}>{CONTACT_EMAIL}</a>.
+		</p>
+	</section>
+
+	<section>
+		<h2>Intellectual Property</h2>
+		<p>
+			All original text, graphics, and layout on this Site are the property of Future Voters
+			Academy. You are permitted to share, quote, or reproduce FVA's educational content for
+			noncommercial civic or educational purposes, provided you attribute the source as "Future
+			Voters Academy ({SITE_URL})" and do not alter the substance of the material.
+		</p>
+		<p>
+			FVA's logo and brand marks may not be reproduced, modified, or used without prior written
+			consent. Third-party content linked or referenced on this Site (including government
+			documents, external organization materials, and news sources) is owned by its respective
+			copyright holders and governed by their terms.
+		</p>
+	</section>
+
+	<section>
+		<h2>Limitation of Liability</h2>
+		<p>
+			To the fullest extent permitted by applicable law, Future Voters Academy, its founder,
+			volunteers, and affiliates shall not be liable for any direct, indirect, incidental,
+			consequential, or punitive damages arising from your use of, or inability to use, this
+			Site or any content it contains. Use of this Site is at your own risk.
+		</p>
+	</section>
+
+	<section>
+		<h2>Governing Law</h2>
+		<p>
+			These Terms of Use are governed by the laws of the State of Georgia, without regard to
+			its conflict of law provisions. Any disputes arising from your use of this Site shall be
+			subject to the exclusive jurisdiction of courts located in Pierce County, Georgia.
+		</p>
+	</section>
+
+	<section>
+		<h2>Changes to These Terms</h2>
+		<p>
+			FVA reserves the right to update these Terms of Use at any time. The effective date at
+			the top of this page reflects the most recent revision. Continued use of the Site after a
+			revision constitutes acceptance of the updated terms.
+		</p>
+	</section>
+
+	<section>
+		<h2>Contact</h2>
+		<p>
+			Questions about these terms can be directed to Future Voters Academy at{' '}
+			<a href={`mailto:${CONTACT_EMAIL}?subject=General Inquiry`}>{CONTACT_EMAIL}</a>.
+		</p>
+	</section>
+</PageLayout>

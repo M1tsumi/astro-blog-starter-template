@@ -1,0 +1,195 @@
+---
+import PageLayout from '../layouts/PageLayout.astro';
+import { DONATE_URL, CONTACT_EMAIL } from '../consts';
+---
+
+<PageLayout
+	title="Donate"
+	subtitle="Support Free Civic Education"
+	description="Support Future Voters Academy with a donation. Your contribution funds free, nonpartisan civic education workshops and materials for low-income communities in southern Georgia."
+>
+	<section>
+		<h2>Why Your Support Matters</h2>
+		<p>
+			Future Voters Academy delivers free, nonpartisan civic education to residents of low-income
+			communities who have historically had limited access to plain-language information about how
+			government works, how to vote, and how to exercise their civil rights.
+		</p>
+		<p>
+			Every dollar donated goes directly toward educational programming, printed materials, and
+			community outreach. FVA currently has no paid staff. There is no overhead — your money
+			reaches the communities it is intended for.
+		</p>
+	</section>
+
+	<section>
+		<h2>How to Donate</h2>
+		<div class="give-grid">
+			<div class="give-card">
+				<h3>Donate on GoFundMe</h3>
+				<p>
+					The quickest way to support FVA. Any amount is welcome. GoFundMe accepts all major
+					debit and credit cards.
+				</p>
+				<a
+					href={DONATE_URL}
+					target="_blank"
+					rel="noopener noreferrer"
+					class="btn-donate"
+				>
+					Donate Now on GoFundMe
+					<svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="vertical-align:-1px; margin-left:0.4rem;"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+				</a>
+			</div>
+			<div class="give-card">
+				<h3>Alternative Giving</h3>
+				<p>
+					Prefer to donate directly outside of GoFundMe — by check, bank transfer, or another
+					method? Contact us and we will arrange it.
+				</p>
+				<a href={`mailto:${CONTACT_EMAIL}?subject=Donation Inquiry`} class="btn-secondary">
+					Email Us: Donation Inquiry
+				</a>
+			</div>
+			<div class="give-card">
+				<h3>Recurring Monthly Support</h3>
+				<p>
+					Recurring monthly gifts provide reliable funding that lets FVA plan ahead and expand
+					its programs over time. GoFundMe supports recurring contributions, or contact us
+					directly to set up a recurring arrangement.
+				</p>
+				<a
+					href={DONATE_URL}
+					target="_blank"
+					rel="noopener noreferrer"
+					class="btn-secondary"
+				>
+					Set Up Monthly Giving
+				</a>
+			</div>
+			<div class="give-card">
+				<h3>Organizational Partnership</h3>
+				<p>
+					Businesses, nonprofits, and civic organizations can support FVA through direct
+					financial contributions, in-kind support, or co-sponsoring community workshops.
+				</p>
+				<a href={`mailto:${CONTACT_EMAIL}?subject=Partnership Proposal`} class="btn-secondary">
+					Email Us: Partnership Proposal
+				</a>
+			</div>
+		</div>
+	</section>
+
+	<section>
+		<h2>Important Notice Regarding Tax Deductibility</h2>
+		<div class="info-box">
+			<p>
+				<strong>Donations to Future Voters Academy are not currently tax-deductible.</strong>
+			</p>
+			<p>
+				FVA is currently organized as an unincorporated association and has not yet received
+				501(c)(3) tax-exempt status from the Internal Revenue Service. Until that status is
+				formally granted, contributions do not qualify as charitable deductions for federal
+				income tax purposes.
+			</p>
+			<p>
+				FVA is actively pursuing formal nonprofit incorporation and 501(c)(3) designation. All
+				donors will be notified when tax-deductible status is obtained. Financial records and
+				organizational documents are available upon written request at{' '}
+				<a href={`mailto:${CONTACT_EMAIL}?subject=Document Request`}>{CONTACT_EMAIL}</a>.
+			</p>
+		</div>
+	</section>
+
+	<section>
+		<h2>How Funds Are Used</h2>
+		<p>
+			All donations are used exclusively to fund FVA's civic education mission. Current
+			expenditure categories include:
+		</p>
+		<ul>
+			<li>Printing and distribution of plain-language civic education materials</li>
+			<li>Community workshop facilitation costs (venue, materials, logistics)</li>
+			<li>Website and communications infrastructure</li>
+			<li>501(c)(3) incorporation and legal filing fees</li>
+		</ul>
+		<p>
+			FVA currently has no paid staff. All work is performed by volunteers. A summary of fund
+			usage is available upon written request.
+		</p>
+	</section>
+
+	<section>
+		<h2>Questions</h2>
+		<p>
+			For questions about donating, giving options, or how funds are used, contact us at{' '}
+			<a href={`mailto:${CONTACT_EMAIL}?subject=Donation Inquiry`}>{CONTACT_EMAIL}</a>{' '}
+			with subject line <strong>Donation Inquiry</strong>. We respond within three to five
+			business days.
+		</p>
+	</section>
+</PageLayout>
+
+<style>
+	.give-grid {
+		display: grid;
+		grid-template-columns: 1fr 1fr;
+		gap: 1rem;
+		margin-top: 0.5rem;
+	}
+	@media (max-width: 600px) {
+		.give-grid { grid-template-columns: 1fr; }
+	}
+	.give-card {
+		border: 1px solid rgb(var(--gray-light));
+		border-top: 3px solid rgb(var(--black));
+		padding: 1.25rem 1.5rem;
+		display: flex;
+		flex-direction: column;
+		gap: 0.6rem;
+	}
+	.give-card h3 {
+		font-size: 0.85rem;
+		text-transform: uppercase;
+		letter-spacing: 0.06em;
+		margin: 0;
+		color: rgb(var(--black));
+	}
+	.give-card p {
+		font-size: 0.9rem;
+		line-height: 1.75;
+		margin: 0;
+		color: rgb(var(--gray-dark));
+		flex: 1;
+	}
+	.btn-donate {
+		display: inline-block;
+		background: var(--accent-warm);
+		color: #ffffff;
+		text-decoration: none;
+		padding: 0.65rem 1.25rem;
+		font-size: 0.8rem;
+		font-weight: 700;
+		letter-spacing: 0.04em;
+		text-transform: uppercase;
+		transition: background 0.15s;
+		align-self: flex-start;
+		margin-top: 0.25rem;
+	}
+	.btn-donate:hover { background: var(--accent-warm-hover); }
+	.btn-secondary {
+		display: inline-block;
+		background: rgb(var(--black));
+		color: #ffffff;
+		text-decoration: none;
+		padding: 0.65rem 1.25rem;
+		font-size: 0.8rem;
+		font-weight: 700;
+		letter-spacing: 0.04em;
+		text-transform: uppercase;
+		transition: background 0.15s;
+		align-self: flex-start;
+		margin-top: 0.25rem;
+	}
+	.btn-secondary:hover { background: #2d3748; }
+</style>

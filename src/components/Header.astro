@@ -1,6 +1,6 @@
 ﻿---
 import HeaderLink from './HeaderLink.astro';
-import { SITE_TITLE } from '../consts';
+import { SITE_TITLE, DONATE_URL } from '../consts';
 ---
 
 <a href="#main-content" class="skip-link">Skip to main content</a>
@@ -26,9 +26,10 @@ import { SITE_TITLE } from '../consts';
 <HeaderLink href="/">Home</HeaderLink>
 <HeaderLink href="/about">About</HeaderLink>
 <HeaderLink href="/programs">Programs</HeaderLink>
+<HeaderLink href="/news">News</HeaderLink>
 <HeaderLink href="/resources">Resources</HeaderLink>
 <HeaderLink href="/contact">Contact</HeaderLink>
-<a href="https://gofund.me/99ba920ef" target="_blank" rel="noopener noreferrer" class="nav-donate">Donate</a>
+<a href="/donate" class="nav-donate">Donate</a>
 </div>
 </nav>
 </header>

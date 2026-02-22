@@ -6,3 +6,10 @@ export const SITE_DESCRIPTION = "Future Voters Academy raises funds for free, no
 export const SITE_URL = "https://futurevotersacademy.org";
 export const SITE_KEYWORDS = "nonpartisan civic education, voter education, political education, low-income neighborhoods, community civics, Future Voters Academy, Thomas Cobb, voter rights, how government works";
 export const SITE_AUTHOR = "Future Voters Academy";
+
+// Donation & contact constants — change once, reflected everywhere
+export const DONATE_URL = "https://gofund.me/99ba920ef";
+export const CONTACT_EMAIL = "fva.info.contact@gmail.com";
+export const INSTAGRAM_URL = "https://www.instagram.com/futurevotersacademy";
+export const INSTAGRAM_HANDLE = "@futurevotersacademy";
+export const OG_IMAGE = "/og-image.png";

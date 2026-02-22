@@ -1,4 +1,5 @@
 ﻿---
+import { DONATE_URL, CONTACT_EMAIL, INSTAGRAM_URL, INSTAGRAM_HANDLE } from '../consts';
 const today = new Date();
 ---
 
@@ -11,7 +12,7 @@ const today = new Date();
 Bringing free civic education to the communities that need it most.
 </p>
 <p class="footer-status">Unincorporated Association | 501(c)(3) Pending</p>
-<a href="https://gofund.me/99ba920ef" target="_blank" rel="noopener noreferrer" class="footer-donate-btn">
+<a href="/donate" class="footer-donate-btn">
 Donate Now
 </a>
 </div>
@@ -23,12 +24,14 @@ Donate Now
 <li><a href="/">Home</a></li>
 <li><a href="/about">About</a></li>
 <li><a href="/programs">Programs</a></li>
+<li><a href="/news">News &amp; Updates</a></li>
 <li><a href="/resources">Civic Resources</a></li>
 <li><a href="/contact">Contact</a></li>
 </ul>
 <p class="footer-heading" style="margin-top:1.75rem;">Legal</p>
 <ul>
 <li><a href="/privacy">Privacy Policy</a></li>
+<li><a href="/terms">Terms of Use</a></li>
 </ul>
 </div>
 
@@ -36,13 +39,13 @@ Donate Now
 <div class="footer-col">
 <p class="footer-heading">Contact</p>
 <ul>
-<li><a href="mailto:fva.info.contact@gmail.com">fva.info.contact@gmail.com</a></li>
+<li><a href={`mailto:${CONTACT_EMAIL}`}>{CONTACT_EMAIL}</a></li>
 <li><a href="https://futurevotersacademy.org">futurevotersacademy.org</a></li>
 </ul>
 <p class="footer-heading" style="margin-top:1.75rem;">Follow Us</p>
 <ul>
 <li>
-<a href="https://www.instagram.com/futurevotersacademy" target="_blank" rel="noopener noreferrer" class="social-link">
+<a href={INSTAGRAM_URL} target="_blank" rel="noopener noreferrer" class="social-link">
 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="vertical-align:-2px; margin-right:0.4rem;">
 <rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect>
 <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path>
@@ -54,7 +57,7 @@ Donate Now
 </ul>
 <p class="footer-heading" style="margin-top:1.75rem;">Support</p>
 <ul>
-<li><a href="https://gofund.me/99ba920ef" target="_blank" rel="noopener noreferrer">Donate on GoFundMe</a></li>
+<li><a href="/donate">Donate</a></li>
 </ul>
 </div>
 </div>
