@@ -166,42 +166,36 @@ background: linear-gradient(90deg, #9a6000, #c9881a, #e8a82a, #c9881a, #9a6000);
 .steps-grid {
 display: grid;
 grid-template-columns: repeat(4, 1fr);
-gap: 2px;
 margin-top: 3.5rem;
+border-top: 1px solid rgba(255, 255, 255, 0.1);
 }
 .step-card {
-background: rgba(255, 255, 255, 0.04);
-padding: 2.5rem 1.75rem 2.25rem;
-border-top: 3px solid transparent;
-transition: background 0.18s, border-top-color 0.18s;
+padding: 2.5rem 2rem 2.25rem;
+border-right: 1px solid rgba(255, 255, 255, 0.1);
 }
-.step-card:hover {
-background: rgba(255, 255, 255, 0.09);
-border-top-color: #c9881a;
-}
-.step-icon {
-font-size: 2rem;
-display: block;
-margin-bottom: 1rem;
+.step-card:last-child {
+border-right: none;
 }
 .step-num {
-font-size: 0.65rem;
-font-weight: 700;
-letter-spacing: 0.14em;
-text-transform: uppercase;
+font-size: 2.5rem;
+font-weight: 800;
 color: #c9881a;
-margin-bottom: 0.4rem;
+line-height: 1;
+margin-bottom: 1.25rem;
+letter-spacing: -0.03em;
+display: block;
 }
 .step-title {
-font-size: 1.05rem;
-font-weight: 800;
+font-size: 1rem;
+font-weight: 700;
 color: #ffffff;
-margin: 0 0 0.65rem;
+margin: 0 0 0.6rem;
+letter-spacing: 0.01em;
 }
 .step-desc {
 font-size: 0.875rem;
-color: rgba(215, 218, 222, 0.7);
-line-height: 1.7;
+color: rgba(215, 218, 222, 0.68);
+line-height: 1.75;
 margin: 0;
 }
 
@@ -225,7 +219,6 @@ justify-content: space-between;
 gap: 2rem;
 flex-wrap: wrap;
 }
-.give-featured-text .give-icon { font-size: 1.6rem; display: block; margin-bottom: 0.5rem; }
 .give-featured-text h3 { font-size: 1.2rem; font-weight: 800; color: #ffffff; margin: 0 0 0.4rem; }
 .give-featured-text p { font-size: 0.92rem; color: rgba(215, 218, 222, 0.8); line-height: 1.7; margin: 0; }
 .give-card {
@@ -240,7 +233,6 @@ transition: box-shadow 0.18s, transform 0.12s;
 box-shadow: 0 6px 24px rgba(13, 24, 33, 0.1);
 transform: translateY(-2px);
 }
-.give-icon { font-size: 1.75rem; display: block; margin-bottom: 0.75rem; }
 .give-card h3 { font-size: 1rem; font-weight: 800; color: #0d1821; margin: 0 0 0.5rem; }
 .give-card > p, .give-card ul { font-size: 0.88rem; line-height: 1.75; color: #4a5568; margin: 0 0 0.6rem; }
 .give-card ul { padding-left: 1.25rem; }
@@ -255,12 +247,8 @@ border: 1px solid #f0d080;
 border-left: 5px solid #c9881a;
 border-radius: 4px;
 padding: 1.5rem 1.75rem;
-display: flex;
-gap: 1rem;
-align-items: flex-start;
 margin-top: 1.75rem;
 }
-.callout-icon { font-size: 1.3rem; flex-shrink: 0; margin-top: 0.1rem; }
 .callout-body { font-size: 0.9rem; line-height: 1.8; color: #5a3e00; }
 .callout-body p { margin: 0 0 0.5rem; }
 .callout-body p:last-child { margin: 0; }
@@ -324,7 +312,6 @@ border: 1px solid rgba(255, 255, 255, 0.1);
 border-radius: 6px;
 padding: 1.75rem;
 }
-.connect-icon { font-size: 1.6rem; display: block; margin-bottom: 0.75rem; }
 .connect-card h3 { font-size: 1rem; font-weight: 700; color: #ffffff; margin: 0 0 0.5rem; }
 .connect-card p { font-size: 0.88rem; color: rgba(215, 218, 222, 0.78); line-height: 1.7; margin: 0; }
 .connect-card a { color: #e8a82a; font-weight: 600; }
@@ -333,12 +320,17 @@ padding: 1.75rem;
 /* ─── RESPONSIVE ────────────────────────────────────── */
 @media (max-width: 900px) {
 .steps-grid { grid-template-columns: repeat(2, 1fr); }
+.step-card { border-bottom: 1px solid rgba(255, 255, 255, 0.1); }
+.step-card:nth-child(2) { border-right: none; }
+.step-card:nth-child(3), .step-card:nth-child(4) { border-bottom: none; }
 .give-grid { grid-template-columns: 1fr 1fr; }
 }
 @media (max-width: 640px) {
 .s-inner { padding: 3.5rem 1.25rem; }
 .hero { padding: 5rem 1.25rem 4.5rem; }
-.steps-grid { grid-template-columns: 1fr; gap: 1px; }
+.steps-grid { grid-template-columns: 1fr; }
+.step-card { border-right: none; border-bottom: 1px solid rgba(255, 255, 255, 0.1); }
+.step-card:last-child { border-bottom: none; }
 .give-grid { grid-template-columns: 1fr; }
 .give-featured { grid-column: span 1; flex-direction: column; }
 .connect-grid { grid-template-columns: 1fr; }
@@ -409,26 +401,22 @@ needed most.
 <h2 class="s-heading">How It Works</h2>
 <div class="steps-grid">
 <div class="step-card">
-<span class="step-icon">🔍</span>
-<p class="step-num">Step 01</p>
+<span class="step-num">01</span>
 <h3 class="step-title">Identify</h3>
 <p class="step-desc">We identify neighborhoods and communities with limited access to nonpartisan civic education resources.</p>
 </div>
 <div class="step-card">
-<span class="step-icon">📋</span>
-<p class="step-num">Step 02</p>
+<span class="step-num">02</span>
 <h3 class="step-title">Develop</h3>
 <p class="step-desc">We produce plain-language educational materials covering voting rights, government structure, and the electoral process.</p>
 </div>
 <div class="step-card">
-<span class="step-icon">🤝</span>
-<p class="step-num">Step 03</p>
+<span class="step-num">03</span>
 <h3 class="step-title">Engage</h3>
 <p class="step-desc">We hold free community workshops and information sessions where residents can learn and ask questions.</p>
 </div>
 <div class="step-card">
-<span class="step-icon">📈</span>
-<p class="step-num">Step 04</p>
+<span class="step-num">04</span>
 <h3 class="step-title">Grow</h3>
 <p class="step-desc">We build our donor base and pursue formal nonprofit recognition to expand programming capacity.</p>
 </div>
@@ -467,7 +455,6 @@ building the local partnerships needed to deliver them.
 <!-- Featured GoFundMe -->
 <div class="give-featured">
 <div class="give-featured-text">
-<span class="give-icon">❤️</span>
 <h3>Support Us on GoFundMe</h3>
 <p>Every contribution &mdash; large or small &mdash; goes directly toward free civic education in underserved communities. Quick, secure, no account required.</p>
 </div>
@@ -475,17 +462,14 @@ building the local partnerships needed to deliver them.
 </div>
 <!-- Regular give cards -->
 <div class="give-card">
-<span class="give-icon">💵</span>
 <h3>One-Time Donation</h3>
 <p>Make a direct contribution in any amount. <a href="mailto:fva.info.contact@gmail.com">Contact us</a> to arrange a donation outside of GoFundMe.</p>
 </div>
 <div class="give-card">
-<span class="give-icon">🔁</span>
 <h3>Monthly Support</h3>
 <p>Recurring monthly gifts provide reliable funding that allows FVA to plan and expand its programs over time.</p>
 </div>
 <div class="give-card">
-<span class="give-icon">🏢</span>
 <h3>Organizational Partnership</h3>
 <p>Businesses, nonprofits, and community organizations can partner with FVA through:</p>
 <ul>
@@ -496,7 +480,6 @@ building the local partnerships needed to deliver them.
 <p><a href="mailto:fva.info.contact@gmail.com?subject=Partnership Proposal">Start a conversation &rarr;</a></p>
 </div>
 <div class="give-card">
-<span class="give-icon">🙋</span>
 <h3>Volunteer</h3>
 <p>Contribute your time and skills. We welcome educators, community organizers, and civic-minded professionals. <a href="mailto:fva.info.contact@gmail.com?subject=Volunteer Interest">Get in touch &rarr;</a></p>
 </div>
@@ -515,7 +498,6 @@ FVA currently operates as an unincorporated association. We are actively pursuin
 grants, accept tax-deductible donations, and formalize our organizational structure.
 </p>
 <div class="callout-amber">
-<span class="callout-icon">ℹ️</span>
 <div class="callout-body">
 <p>
 <strong>Notice:</strong> Until 501(c)(3) status is officially granted, donations to
@@ -581,12 +563,10 @@ hear about upcoming workshops, materials, and milestones.
 </p>
 <div class="connect-grid">
 <div class="connect-card">
-<span class="connect-icon">📸</span>
 <h3>Follow on Instagram</h3>
 <p><a href="https://www.instagram.com/futurevotersacademy" target="_blank" rel="noopener noreferrer">@futurevotersacademy</a> &mdash; updates, events, and civic education content.</p>
 </div>
 <div class="connect-card">
-<span class="connect-icon">✉️</span>
 <h3>Get Email Updates</h3>
 <p>Email <a href="mailto:fva.info.contact@gmail.com?subject=Stay Connected">fva.info.contact@gmail.com</a> with subject <strong style="color:rgba(255,255,255,0.9);">Stay Connected</strong> and we&apos;ll add you to our list.</p>
 </div>
