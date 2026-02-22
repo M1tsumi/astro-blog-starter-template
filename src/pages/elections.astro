@@ -1,0 +1,734 @@
+---
+import BaseHead from '../components/BaseHead.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+---
+
+<!doctype html>
+<html lang="en">
+<head>
+<BaseHead
+  title="When's My Next Election? | Future Voters Academy"
+  description="Look up upcoming elections in your area using your zip code. FVA's free, nonpartisan election finder shows scheduled elections, registration deadlines, and links to official voter information for your state." />
+<style>
+/* ── Base ───────────────────────────────────────────── */
+.page-wrap {
+  max-width: 780px;
+  margin: 0 auto;
+  padding: 56px 24px 80px;
+}
+.page-title {
+  font-size: 1.75rem;
+  font-weight: 700;
+  color: #1a2e4a;
+  letter-spacing: 0.02em;
+  margin: 0 0 0.5rem;
+}
+.page-intro {
+  font-size: 0.975rem;
+  line-height: 1.8;
+  color: #444444;
+  margin: 0 0 2.5rem;
+  max-width: 640px;
+}
+.divider {
+  width: 48px;
+  height: 3px;
+  background: #c9921a;
+  margin: 0 0 1.5rem;
+}
+
+/* ── Privacy ribbon ─────────────────────────────────── */
+.privacy-ribbon {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.75rem;
+  background: #f0f4f9;
+  border-left: 4px solid #1a2e4a;
+  padding: 1rem 1.25rem;
+  margin-bottom: 2rem;
+  font-size: 0.875rem;
+  line-height: 1.65;
+  color: #333333;
+}
+.privacy-ribbon svg {
+  flex-shrink: 0;
+  margin-top: 0.1rem;
+  color: #1a2e4a;
+}
+
+/* ── Form ───────────────────────────────────────────── */
+.lookup-form {
+  display: flex;
+  gap: 0.75rem;
+  flex-wrap: wrap;
+  margin-bottom: 2.5rem;
+}
+.zip-input-wrap {
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+  flex: 1;
+  min-width: 180px;
+  max-width: 260px;
+}
+.zip-input-wrap label {
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: #1a2e4a;
+}
+.zip-input {
+  border: 2px solid #1a2e4a;
+  padding: 0.7rem 1rem;
+  font-size: 1.1rem;
+  font-family: "Inter", system-ui, sans-serif;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  color: #1a2e4a;
+  width: 100%;
+  outline: none;
+  transition: border-color 0.15s;
+}
+.zip-input:focus {
+  border-color: #c9921a;
+}
+.zip-input::placeholder {
+  color: #aaaaaa;
+  font-weight: 400;
+  letter-spacing: 0.05em;
+}
+.zip-submit {
+  align-self: flex-end;
+  background: #c9921a;
+  color: #ffffff;
+  border: none;
+  padding: 0.75rem 1.75rem;
+  font-family: "Inter", system-ui, sans-serif;
+  font-size: 0.875rem;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: background 0.15s;
+  white-space: nowrap;
+}
+.zip-submit:hover { background: #a87a14; }
+.zip-submit:disabled { background: #cccccc; cursor: not-allowed; }
+
+/* ── Error / loading states ─────────────────────────── */
+.status-msg {
+  font-size: 0.875rem;
+  line-height: 1.6;
+  padding: 0.75rem 1rem;
+  margin-bottom: 1.5rem;
+  display: none;
+}
+.status-msg.error {
+  background: #fff3f3;
+  border-left: 4px solid #c0392b;
+  color: #c0392b;
+}
+.status-msg.loading {
+  background: #f5f5f5;
+  border-left: 4px solid #aaaaaa;
+  color: #666666;
+}
+
+/* ── Results panel ──────────────────────────────────── */
+#results { display: none; }
+
+.zip-summary {
+  background: #1a2e4a;
+  color: #ffffff;
+  padding: 1.25rem 1.5rem;
+  margin-bottom: 1.5rem;
+}
+.zip-summary-num {
+  font-size: 1.4rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  margin: 0;
+}
+.zip-summary-detail {
+  font-size: 0.875rem;
+  color: #d1d5db;
+  margin: 0.25rem 0 0;
+  line-height: 1.5;
+}
+
+/* ── District explainer ─────────────────────────────── */
+.district-explainer {
+  border: 1px solid #dde1e7;
+  border-top: 3px solid #c9921a;
+  padding: 1.25rem 1.5rem;
+  margin-bottom: 2rem;
+  background: #fffbf0;
+}
+.district-explainer h3 {
+  font-size: 0.8rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: #c9921a;
+  margin: 0 0 0.6rem;
+}
+.district-explainer p {
+  font-size: 0.875rem;
+  line-height: 1.7;
+  color: #333333;
+  margin: 0 0 0.5rem;
+}
+.district-explainer p:last-child { margin: 0; }
+.district-type-list {
+  list-style: none;
+  padding: 0;
+  margin: 0.75rem 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+}
+.district-type-list li {
+  font-size: 0.75rem;
+  font-weight: 600;
+  background: #1a2e4a;
+  color: #ffffff;
+  padding: 0.2rem 0.55rem;
+  letter-spacing: 0.03em;
+}
+
+/* ── Section heading ────────────────────────────────── */
+.section-label {
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: #888888;
+  border-bottom: 2px solid #1a2e4a;
+  padding-bottom: 0.4rem;
+  margin: 0 0 1.25rem;
+}
+
+/* ── Election cards ─────────────────────────────────── */
+.elections-list {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 2.5rem;
+}
+.election-item {
+  display: grid;
+  grid-template-columns: 7rem 1fr;
+  gap: 1.25rem;
+  padding: 1.25rem 0;
+  border-bottom: 1px solid #eaeaea;
+  align-items: start;
+}
+.election-item:last-child { border-bottom: none; }
+.election-date-block {
+  text-align: center;
+  background: #f5f5f5;
+  border-top: 3px solid #1a2e4a;
+  padding: 0.6rem 0.5rem;
+}
+.election-date-month {
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: #c9921a;
+  display: block;
+}
+.election-date-day {
+  font-size: 1.75rem;
+  font-weight: 700;
+  color: #1a2e4a;
+  line-height: 1;
+  display: block;
+}
+.election-date-year {
+  font-size: 0.75rem;
+  color: #666666;
+  display: block;
+  margin-top: 0.15rem;
+}
+.election-type {
+  font-size: 1rem;
+  font-weight: 700;
+  color: #1a2e4a;
+  margin: 0 0 0.3rem;
+}
+.election-desc {
+  font-size: 0.875rem;
+  line-height: 1.65;
+  color: #444444;
+  margin: 0 0 0.6rem;
+}
+.election-deadline {
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: #c9921a;
+  background: #fff8ec;
+  border: 1px solid #f0d080;
+  display: inline-block;
+  padding: 0.2rem 0.55rem;
+}
+.election-deadline span {
+  font-weight: 400;
+  color: #555555;
+}
+
+/* ── Resources ──────────────────────────────────────── */
+.resource-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+  margin-bottom: 2.5rem;
+}
+.resource-card {
+  border: 1px solid #dde1e7;
+  border-top: 3px solid #1a2e4a;
+  padding: 1.1rem 1.25rem;
+}
+.resource-card h4 {
+  font-size: 0.8rem;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  color: #1a2e4a;
+  margin: 0 0 0.35rem;
+}
+.resource-card p {
+  font-size: 0.825rem;
+  line-height: 1.6;
+  color: #555555;
+  margin: 0 0 0.6rem;
+}
+.resource-card a {
+  font-size: 0.8rem;
+  font-weight: 700;
+  color: #c9921a;
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+.resource-card a:hover { color: #a87a14; }
+
+/* ── Fallback (non-detailed state) ──────────────────── */
+.state-fallback {
+  background: #f5f8ff;
+  border: 1px solid #c5d4ea;
+  border-left: 5px solid #1a2e4a;
+  padding: 1.25rem 1.5rem;
+  margin-bottom: 2rem;
+}
+.state-fallback h3 {
+  font-size: 0.9rem;
+  font-weight: 700;
+  color: #1a2e4a;
+  margin: 0 0 0.4rem;
+}
+.state-fallback p {
+  font-size: 0.875rem;
+  line-height: 1.65;
+  color: #333333;
+  margin: 0 0 0.5rem;
+}
+.state-fallback p:last-child { margin: 0; }
+.state-fallback a { color: #1a2e4a; font-weight: 600; text-decoration: underline; }
+
+/* ── Search again link ──────────────────────────────── */
+.search-again {
+  font-size: 0.85rem;
+  color: #888888;
+  margin-top: 2rem;
+  padding-top: 1.5rem;
+  border-top: 1px solid #eeeeee;
+}
+.search-again button {
+  background: none;
+  border: none;
+  color: #1a2e4a;
+  font-weight: 600;
+  font-size: 0.85rem;
+  cursor: pointer;
+  text-decoration: underline;
+  padding: 0;
+}
+.search-again button:hover { color: #c9921a; }
+
+/* ── Responsive ─────────────────────────────────────── */
+@media (max-width: 540px) {
+  .page-wrap { padding: 36px 16px 60px; }
+  .election-item { grid-template-columns: 1fr; gap: 0.5rem; }
+  .election-date-block { text-align: left; display: flex; align-items: baseline; gap: 0.5rem; border-top: none; border-left: 3px solid #1a2e4a; padding: 0.4rem 0.75rem; }
+  .election-date-month { font-size: 0.8rem; }
+  .election-date-day { font-size: 1rem; }
+  .resource-grid { grid-template-columns: 1fr; }
+}
+</style>
+</head>
+<body>
+<Header />
+<main id="main-content" aria-label="Election Lookup Tool">
+<div class="page-wrap">
+
+  <div class="divider"></div>
+  <h1 class="page-title">When's My Next Election?</h1>
+  <p class="page-intro">
+    Enter your zip code to find upcoming elections in your area, registration deadlines, and links to your official state voter portal. This tool pulls from publicly available election calendars and is strictly nonpartisan.
+  </p>
+
+  <div class="privacy-ribbon" role="note" aria-label="Privacy note">
+    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+    <span>
+      <strong>We only ask for your zip code.</strong> Zip codes can cover multiple city, county, and legislative districts, so we can't tell you your exact ballot from a zip alone &mdash; but we can show you every election coming up in your area and link you to the official tool that will show your specific ballot once you enter your address there.
+    </span>
+  </div>
+
+  <form class="lookup-form" id="lookup-form" novalidate>
+    <div class="zip-input-wrap">
+      <label for="zip-input">Your Zip Code</label>
+      <input
+        type="text"
+        id="zip-input"
+        class="zip-input"
+        inputmode="numeric"
+        maxlength="5"
+        placeholder="e.g. 31555"
+        autocomplete="postal-code"
+        aria-label="Enter your 5-digit zip code"
+        aria-describedby="zip-hint"
+      />
+    </div>
+    <button type="submit" class="zip-submit" id="zip-submit">Look Up Elections</button>
+  </form>
+
+  <div class="status-msg" id="status-msg" role="status" aria-live="polite"></div>
+
+  <div id="results" aria-live="polite">
+
+    <div class="zip-summary" id="zip-summary">
+      <p class="zip-summary-num" id="zip-display"></p>
+      <p class="zip-summary-detail" id="zip-detail"></p>
+    </div>
+
+    <div class="district-explainer" role="note">
+      <h3>Why you might see more than one district's elections</h3>
+      <p>
+        A single zip code commonly touches multiple overlapping election districts. That's not unusual &mdash; it's just how political boundaries are drawn. The elections listed below apply to your zip code's area. Your specific ballot on election day depends on which side of those boundary lines your home address falls on.
+      </p>
+      <p>Most voters are subject to elections at several levels at once:</p>
+      <ul class="district-type-list" aria-label="Types of election districts">
+        <li>Federal (U.S. House)</li>
+        <li>State Senate</li>
+        <li>State House</li>
+        <li>County Commission</li>
+        <li>School Board</li>
+        <li>Municipal (Mayor / City Council)</li>
+        <li>Special Districts</li>
+        <li>Ballot Measures</li>
+      </ul>
+      <p>
+        To see your exact ballot with every race and measure specific to your address, use the official link in the resources section below.
+      </p>
+    </div>
+
+    <!-- Georgia content -->
+    <div id="ga-content" style="display:none;">
+      <p class="section-label">Upcoming Elections &mdash; Georgia</p>
+      <ul class="elections-list" aria-label="Upcoming Georgia elections">
+        <li class="election-item">
+          <div class="election-date-block" aria-hidden="true">
+            <span class="election-date-month">May</span>
+            <span class="election-date-day">19</span>
+            <span class="election-date-year">2026</span>
+          </div>
+          <div>
+            <p class="election-type">General Primary &amp; Nonpartisan General Election</p>
+            <p class="election-desc">
+              Georgia voters choose their party's nominees for U.S. Senate, U.S. House, Governor, Lieutenant Governor, Attorney General, and all Georgia General Assembly seats up for election. Nonpartisan races such as school board and some judicial seats are also decided in this election.
+            </p>
+            <span class="election-deadline">Reg. deadline: <span>April 21, 2026 (28 days prior)</span></span>
+          </div>
+        </li>
+        <li class="election-item">
+          <div class="election-date-block" aria-hidden="true">
+            <span class="election-date-month">Jul</span>
+            <span class="election-date-day">21</span>
+            <span class="election-date-year">2026</span>
+          </div>
+          <div>
+            <p class="election-type">Primary Runoff &amp; Nonpartisan Runoff</p>
+            <p class="election-desc">
+              Triggered only when no candidate receives more than 50% of the vote in the May primary. Only races where a runoff is required will appear on your ballot &mdash; many voters may have no contests to decide. Check your county election office for confirmation after May 19.
+            </p>
+            <span class="election-deadline">Reg. deadline: <span>June 23, 2026 (if applicable)</span></span>
+          </div>
+        </li>
+        <li class="election-item">
+          <div class="election-date-block" aria-hidden="true">
+            <span class="election-date-month">Nov</span>
+            <span class="election-date-day">3</span>
+            <span class="election-date-year">2026</span>
+          </div>
+          <div>
+            <p class="election-type">General Election</p>
+            <p class="election-desc">
+              All Georgia registered voters choose between party nominees (and any qualifying independent candidates) for every statewide and district-level office on the ballot. This is typically the largest turnout election of the year. Local ballot measures may also appear.
+            </p>
+            <span class="election-deadline">Reg. deadline: <span>October 6, 2026 (28 days prior)</span></span>
+          </div>
+        </li>
+      </ul>
+
+      <p class="section-label">Official Georgia Voter Resources</p>
+      <div class="resource-grid">
+        <div class="resource-card">
+          <h4>Georgia My Voter Page</h4>
+          <p>Confirm your registration, find your polling place, view your sample ballot, and check your absentee ballot status.</p>
+          <a href="https://mvp.sos.ga.gov" target="_blank" rel="noopener noreferrer">mvp.sos.ga.gov &rarr;</a>
+        </div>
+        <div class="resource-card">
+          <h4>Georgia Voter Registration</h4>
+          <p>Register to vote or update your registration online through the Georgia Secretary of State's official portal.</p>
+          <a href="https://registertovote.sos.ga.gov" target="_blank" rel="noopener noreferrer">registertovote.sos.ga.gov &rarr;</a>
+        </div>
+        <div class="resource-card">
+          <h4>Georgia SOS Elections Division</h4>
+          <p>Official election calendars, candidate information, early voting locations, and county election office contacts.</p>
+          <a href="https://sos.ga.gov/page/elections-division" target="_blank" rel="noopener noreferrer">sos.ga.gov/elections &rarr;</a>
+        </div>
+        <div class="resource-card">
+          <h4>Find Your Sample Ballot</h4>
+          <p>Ballotpedia's Georgia page lists every race by district. Enter your address to see your specific ballot before election day.</p>
+          <a href="https://ballotpedia.org/Georgia" target="_blank" rel="noopener noreferrer">ballotpedia.org/Georgia &rarr;</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Non-Georgia fallback -->
+    <div id="other-content" style="display:none;">
+      <div class="state-fallback">
+        <h3 id="other-state-heading">Elections in Your State</h3>
+        <p id="other-state-intro"></p>
+        <p>
+          For your exact election dates, registration deadline, polling place, and sample ballot, visit your state's official voter information portal or use the federal resource below.
+        </p>
+        <p>
+          <a id="other-state-sos-link" href="https://www.vote.gov" target="_blank" rel="noopener noreferrer">Visit your state's official voter portal &rarr;</a>
+        </p>
+      </div>
+
+      <p class="section-label">National Voter Resources</p>
+      <div class="resource-grid">
+        <div class="resource-card">
+          <h4>Vote.gov</h4>
+          <p>The official federal voter information site. State-by-state guides to registration, deadlines, absentee voting, and election dates.</p>
+          <a href="https://www.vote.gov" target="_blank" rel="noopener noreferrer">vote.gov &rarr;</a>
+        </div>
+        <div class="resource-card">
+          <h4>VOTE411.org</h4>
+          <p>Enter your address to get personalized voter information including your exact ballot, registration status, and polling place.</p>
+          <a href="https://www.vote411.org" target="_blank" rel="noopener noreferrer">vote411.org &rarr;</a>
+        </div>
+        <div class="resource-card">
+          <h4>Ballotpedia</h4>
+          <p>Nonpartisan election encyclopedia. Look up every federal, state, and local race and ballot measure in your area.</p>
+          <a href="https://ballotpedia.org" target="_blank" rel="noopener noreferrer">ballotpedia.org &rarr;</a>
+        </div>
+        <div class="resource-card">
+          <h4>USA.gov: Elections</h4>
+          <p>Official federal portal for all civic information including election guidance for every state and territory.</p>
+          <a href="https://www.usa.gov/absentee-voting" target="_blank" rel="noopener noreferrer">usa.gov/elections &rarr;</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="search-again">
+      <span>Not your area?</span>
+      <button id="reset-btn" type="button">Search a different zip code</button>
+    </div>
+
+  </div><!-- /#results -->
+
+</div><!-- /.page-wrap -->
+</main>
+<Footer />
+</body>
+</html>
+
+<script>
+// State SOS URLs for fallback display
+const STATE_INFO: Record<string, { name: string; sos: string; sosLabel: string }> = {
+  AL: { name: "Alabama",        sos: "https://www.sos.alabama.gov/alabama-votes",           sosLabel: "Alabama Votes" },
+  AK: { name: "Alaska",         sos: "https://www.elections.alaska.gov",                    sosLabel: "Alaska Elections" },
+  AZ: { name: "Arizona",        sos: "https://azsos.gov/elections",                         sosLabel: "Arizona SOS Elections" },
+  AR: { name: "Arkansas",       sos: "https://www.sos.arkansas.gov/elections",              sosLabel: "Arkansas SOS Elections" },
+  CA: { name: "California",     sos: "https://www.sos.ca.gov/elections",                    sosLabel: "California SOS Elections" },
+  CO: { name: "Colorado",       sos: "https://www.sos.state.co.us/voter/pages/pub/home.xhtml", sosLabel: "Colorado Voter Portal" },
+  CT: { name: "Connecticut",    sos: "https://portal.ct.gov/SOTS/Election-Services",        sosLabel: "Connecticut SOS Elections" },
+  DE: { name: "Delaware",       sos: "https://elections.delaware.gov",                      sosLabel: "Delaware Elections" },
+  FL: { name: "Florida",        sos: "https://dos.myflorida.com/elections",                 sosLabel: "Florida Division of Elections" },
+  GA: { name: "Georgia",        sos: "https://mvp.sos.ga.gov",                              sosLabel: "Georgia My Voter Page" },
+  HI: { name: "Hawaii",         sos: "https://elections.hawaii.gov",                        sosLabel: "Hawaii Office of Elections" },
+  ID: { name: "Idaho",          sos: "https://sos.idaho.gov/elections-division",            sosLabel: "Idaho SOS Elections" },
+  IL: { name: "Illinois",       sos: "https://www.elections.il.gov",                        sosLabel: "Illinois State Board of Elections" },
+  IN: { name: "Indiana",        sos: "https://www.in.gov/sos/elections",                    sosLabel: "Indiana SOS Elections" },
+  IA: { name: "Iowa",           sos: "https://sos.iowa.gov/elections",                      sosLabel: "Iowa SOS Elections" },
+  KS: { name: "Kansas",         sos: "https://www.sos.ks.gov/elections",                    sosLabel: "Kansas SOS Elections" },
+  KY: { name: "Kentucky",       sos: "https://elect.ky.gov",                                sosLabel: "Kentucky State Board of Elections" },
+  LA: { name: "Louisiana",      sos: "https://www.sos.la.gov/ElectionsAndVoting",           sosLabel: "Louisiana SOS Elections" },
+  ME: { name: "Maine",          sos: "https://www.maine.gov/sos/cec/elec",                  sosLabel: "Maine SOS Elections" },
+  MD: { name: "Maryland",       sos: "https://elections.maryland.gov",                      sosLabel: "Maryland State Board of Elections" },
+  MA: { name: "Massachusetts",  sos: "https://www.sec.state.ma.us/ele",                     sosLabel: "Massachusetts SOS Elections" },
+  MI: { name: "Michigan",       sos: "https://mvic.sos.state.mi.us",                        sosLabel: "Michigan Voter Information Center" },
+  MN: { name: "Minnesota",      sos: "https://www.sos.state.mn.us/elections-voting",        sosLabel: "Minnesota SOS Elections" },
+  MS: { name: "Mississippi",    sos: "https://www.sos.ms.gov/elections-voting",             sosLabel: "Mississippi SOS Elections" },
+  MO: { name: "Missouri",       sos: "https://www.sos.mo.gov/elections",                    sosLabel: "Missouri SOS Elections" },
+  MT: { name: "Montana",        sos: "https://sosmt.gov/elections",                         sosLabel: "Montana SOS Elections" },
+  NE: { name: "Nebraska",       sos: "https://www.sos.ne.gov/elec",                         sosLabel: "Nebraska SOS Elections" },
+  NV: { name: "Nevada",         sos: "https://www.nvsos.gov/sos/elections",                 sosLabel: "Nevada SOS Elections" },
+  NH: { name: "New Hampshire",  sos: "https://www.sos.nh.gov/elections",                    sosLabel: "New Hampshire SOS Elections" },
+  NJ: { name: "New Jersey",     sos: "https://www.state.nj.us/state/elections",             sosLabel: "New Jersey Division of Elections" },
+  NM: { name: "New Mexico",     sos: "https://www.sos.nm.gov/voting-information",           sosLabel: "New Mexico SOS Voting" },
+  NY: { name: "New York",       sos: "https://www.elections.ny.gov",                        sosLabel: "New York State Board of Elections" },
+  NC: { name: "North Carolina", sos: "https://www.ncsbe.gov",                               sosLabel: "NC State Board of Elections" },
+  ND: { name: "North Dakota",   sos: "https://vip.sos.nd.gov",                              sosLabel: "North Dakota Voter Information Portal" },
+  OH: { name: "Ohio",           sos: "https://www.ohiosos.gov/elections",                   sosLabel: "Ohio SOS Elections" },
+  OK: { name: "Oklahoma",       sos: "https://www.ok.gov/elections",                        sosLabel: "Oklahoma State Election Board" },
+  OR: { name: "Oregon",         sos: "https://sos.oregon.gov/voting",                       sosLabel: "Oregon SOS Voting" },
+  PA: { name: "Pennsylvania",   sos: "https://www.vote.pa.gov",                             sosLabel: "Pennsylvania Voter Services" },
+  RI: { name: "Rhode Island",   sos: "https://vote.sos.ri.gov",                             sosLabel: "Rhode Island SOS Voter Portal" },
+  SC: { name: "South Carolina", sos: "https://www.scvotes.gov",                             sosLabel: "South Carolina Votes" },
+  SD: { name: "South Dakota",   sos: "https://sdsos.gov/elections-voting",                  sosLabel: "South Dakota SOS Elections" },
+  TN: { name: "Tennessee",      sos: "https://sos.tn.gov/elections",                        sosLabel: "Tennessee SOS Elections" },
+  TX: { name: "Texas",          sos: "https://www.votetexas.gov",                           sosLabel: "Vote Texas" },
+  UT: { name: "Utah",           sos: "https://elections.utah.gov",                          sosLabel: "Utah Elections Office" },
+  VT: { name: "Vermont",        sos: "https://sos.vermont.gov/elections",                   sosLabel: "Vermont SOS Elections" },
+  VA: { name: "Virginia",       sos: "https://www.elections.virginia.gov",                  sosLabel: "Virginia Department of Elections" },
+  WA: { name: "Washington",     sos: "https://www.sos.wa.gov/elections",                    sosLabel: "Washington SOS Elections" },
+  WV: { name: "West Virginia",  sos: "https://sos.wv.gov/elections",                        sosLabel: "West Virginia SOS Elections" },
+  WI: { name: "Wisconsin",      sos: "https://myvote.wi.gov",                               sosLabel: "Wisconsin MyVote" },
+  WY: { name: "Wyoming",        sos: "https://sos.wyo.gov/elections",                       sosLabel: "Wyoming SOS Elections" },
+  DC: { name: "Washington D.C.", sos: "https://www.dcboe.org",                              sosLabel: "DC Board of Elections" },
+};
+
+const form       = document.getElementById('lookup-form')    as HTMLFormElement;
+const input      = document.getElementById('zip-input')      as HTMLInputElement;
+const submitBtn  = document.getElementById('zip-submit')     as HTMLButtonElement;
+const statusEl   = document.getElementById('status-msg')     as HTMLDivElement;
+const resultsEl  = document.getElementById('results')        as HTMLDivElement;
+const zipDisplay = document.getElementById('zip-display')    as HTMLParagraphElement;
+const zipDetail  = document.getElementById('zip-detail')     as HTMLParagraphElement;
+const gaContent  = document.getElementById('ga-content')     as HTMLDivElement;
+const otherContent = document.getElementById('other-content') as HTMLDivElement;
+const resetBtn   = document.getElementById('reset-btn')      as HTMLButtonElement;
+const otherHeading = document.getElementById('other-state-heading') as HTMLHeadingElement;
+const otherIntro   = document.getElementById('other-state-intro')   as HTMLParagraphElement;
+const otherSosLink = document.getElementById('other-state-sos-link') as HTMLAnchorElement;
+
+function showStatus(msg: string, type: 'loading' | 'error') {
+  statusEl.textContent = msg;
+  statusEl.className   = `status-msg ${type}`;
+  statusEl.style.display = 'block';
+}
+
+function clearStatus() {
+  statusEl.style.display = 'none';
+  statusEl.textContent = '';
+}
+
+function showResults() {
+  resultsEl.style.display = 'block';
+  resultsEl.scrollIntoView({ behavior: 'smooth', block: 'start' });
+}
+
+function reset() {
+  resultsEl.style.display = 'none';
+  gaContent.style.display  = 'none';
+  otherContent.style.display = 'none';
+  clearStatus();
+  input.value = '';
+  input.focus();
+}
+
+resetBtn.addEventListener('click', reset);
+
+// Only allow digits in zip field
+input.addEventListener('input', () => {
+  input.value = input.value.replace(/\D/g, '').slice(0, 5);
+});
+
+form.addEventListener('submit', async (e) => {
+  e.preventDefault();
+  const zip = input.value.trim();
+
+  if (!/^\d{5}$/.test(zip)) {
+    showStatus('Please enter a valid 5-digit U.S. zip code.', 'error');
+    return;
+  }
+
+  clearStatus();
+  showStatus('Looking up election information for your area…', 'loading');
+  submitBtn.disabled = true;
+  resultsEl.style.display = 'none';
+  gaContent.style.display  = 'none';
+  otherContent.style.display = 'none';
+
+  try {
+    const res = await fetch(`https://api.zippopotam.us/us/${zip}`);
+    if (!res.ok) {
+      showStatus(`We couldn't find a U.S. location for zip code ${zip}. Please double-check the number and try again.`, 'error');
+      submitBtn.disabled = false;
+      return;
+    }
+
+    const data = await res.json();
+    const places: Array<{ 'place name': string; state: string; 'state abbreviation': string }> = data.places;
+
+    if (!places || places.length === 0) {
+      showStatus('No location data found for that zip code. Please try another.', 'error');
+      submitBtn.disabled = false;
+      return;
+    }
+
+    clearStatus();
+
+    const stateAbbr: string = places[0]['state abbreviation'].toUpperCase();
+    const stateName: string = places[0]['state'];
+
+    // Build unique place names for the summary
+    const uniquePlaces = [...new Set(places.map((p) => p['place name']))];
+    const placeList = uniquePlaces.length <= 3
+      ? uniquePlaces.join(', ')
+      : `${uniquePlaces.slice(0, 3).join(', ')} and ${uniquePlaces.length - 3} other area${uniquePlaces.length - 3 > 1 ? 's' : ''}`;
+
+    zipDisplay.textContent = `Zip Code ${zip}`;
+    zipDetail.textContent  = `Covers: ${placeList} · ${stateName}`;
+
+    if (stateAbbr === 'GA') {
+      gaContent.style.display = 'block';
+    } else {
+      const info = STATE_INFO[stateAbbr];
+      const displayName = info ? info.name : stateName;
+      otherHeading.textContent = `Upcoming Elections — ${displayName}`;
+      otherIntro.textContent   = `Zip code ${zip} is in ${displayName}. We have detailed election calendars only for Georgia at this time. For complete, up-to-date election dates and registration deadlines in ${displayName}, visit the official state voter portal linked below.`;
+
+      if (info) {
+        otherSosLink.textContent = `${info.sosLabel} \u2192`;
+        otherSosLink.href        = info.sos;
+      } else {
+        otherSosLink.textContent = 'Visit Vote.gov for state-by-state election information \u2192';
+        otherSosLink.href        = 'https://www.vote.gov';
+      }
+      otherContent.style.display = 'block';
+    }
+
+    showResults();
+  } catch {
+    showStatus('There was a problem connecting to the lookup service. Please check your connection and try again.', 'error');
+  } finally {
+    submitBtn.disabled = false;
+  }
+});
+</script>
