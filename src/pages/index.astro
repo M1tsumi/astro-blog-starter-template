@@ -165,13 +165,16 @@ import { SITE_TITLE, SITE_DESCRIPTION, DONATE_URL, CONTACT_EMAIL, INSTAGRAM_URL 
   border-right: 1px solid #dde1e7;
 }
 .step-card:last-child { border-right: none; }
-.step-num {
-  display: block;
+.step-tag {
+  display: inline-block;
   font-family: "Inter", system-ui, sans-serif;
-  font-size: 2rem;
+  font-size: 0.7rem;
   font-weight: 700;
-  color: #c9921a;
-  line-height: 1;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: #ffffff;
+  background: #c9921a;
+  padding: 0.2rem 0.6rem;
   margin-bottom: 1rem;
 }
 .step-title {
@@ -273,20 +276,25 @@ import { SITE_TITLE, SITE_DESCRIPTION, DONATE_URL, CONTACT_EMAIL, INSTAGRAM_URL 
   border-bottom: 1px solid #dde1e7;
 }
 .roadmap-item:last-child { border-bottom: none; }
-.roadmap-num {
-  min-width: 2.25rem;
-  height: 2.25rem;
-  background: #1a2e4a;
-  color: #ffffff;
-  font-family: "Inter", system-ui, sans-serif;
-  font-size: 0.8rem;
-  font-weight: 700;
-  display: flex;
+.roadmap-badge {
+  display: inline-flex;
   align-items: center;
   justify-content: center;
+  font-family: "Inter", system-ui, sans-serif;
+  font-size: 0.65rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: #ffffff;
+  padding: 0.25rem 0.6rem;
+  white-space: nowrap;
   flex-shrink: 0;
-  margin-top: 0.1rem;
+  margin-top: 0.2rem;
 }
+.roadmap-badge--next   { background: #c9921a; }
+.roadmap-badge--filing { background: #1a2e4a; }
+.roadmap-badge--planned { background: #4b5563; }
+.roadmap-badge--horizon { background: #6b7280; }
 .roadmap-content strong {
   font-family: "Inter", system-ui, sans-serif;
   display: block;
@@ -428,28 +436,28 @@ import { SITE_TITLE, SITE_DESCRIPTION, DONATE_URL, CONTACT_EMAIL, INSTAGRAM_URL 
 <!-- HOW IT WORKS -->
 <section class="section bg-white">
   <div class="inner">
-    <span class="eyebrow">The Process</span>
-    <h2 class="section-title">How It Works</h2>
+    <span class="eyebrow">Our Approach</span>
+    <h2 class="section-title">What FVA Actually Does</h2>
     <div class="steps-grid">
       <div class="step-card">
-        <span class="step-num">01</span>
-        <h3 class="step-title">Identify</h3>
-        <p class="step-desc">We identify neighborhoods and communities with limited access to nonpartisan civic education resources.</p>
+        <span class="step-tag">Outreach</span>
+        <h3 class="step-title">Finding the Gaps</h3>
+        <p class="step-desc">We look for neighborhoods and rural communities where nonpartisan civic education is scarce or has never been offered at all.</p>
       </div>
       <div class="step-card">
-        <span class="step-num">02</span>
-        <h3 class="step-title">Develop</h3>
-        <p class="step-desc">We produce plain-language educational materials covering voting rights, government structure, and the electoral process.</p>
+        <span class="step-tag">Materials</span>
+        <h3 class="step-title">Building the Content</h3>
+        <p class="step-desc">We write plain-language guides on voting rights, how government works, and what the electoral process actually looks like from the ground.</p>
       </div>
       <div class="step-card">
-        <span class="step-num">03</span>
-        <h3 class="step-title">Engage</h3>
-        <p class="step-desc">We hold free community workshops and information sessions where residents can learn and ask questions.</p>
+        <span class="step-tag">Community</span>
+        <h3 class="step-title">Showing Up in Person</h3>
+        <p class="step-desc">Free workshops and drop-in sessions bring the information directly to residents — no prior knowledge required, no political agenda.</p>
       </div>
       <div class="step-card">
-        <span class="step-num">04</span>
-        <h3 class="step-title">Grow</h3>
-        <p class="step-desc">We build our donor base and pursue formal nonprofit recognition to expand programming capacity.</p>
+        <span class="step-tag">Growth</span>
+        <h3 class="step-title">Expanding the Reach</h3>
+        <p class="step-desc">We grow our donor base and work toward formal nonprofit recognition so the model can spread to more communities over time.</p>
       </div>
     </div>
   </div>
@@ -535,39 +543,39 @@ import { SITE_TITLE, SITE_DESCRIPTION, DONATE_URL, CONTACT_EMAIL, INSTAGRAM_URL 
 <!-- ROADMAP -->
 <section class="section bg-white">
   <div class="inner inner--narrow">
-    <span class="eyebrow">Roadmap</span>
-    <h2 class="section-title">What&apos;s Coming</h2>
-    <p class="body-text">FVA is an early-stage organization moving with purpose. Here is what we are working toward in the near term:</p>
-    <ol class="roadmap">
+    <span class="eyebrow">Where We Are</span>
+    <h2 class="section-title">Near-Term Priorities</h2>
+    <p class="body-text">FVA is early-stage and moving deliberately. These are the specific things we are working on right now and building toward:</p>
+    <ul class="roadmap">
       <li class="roadmap-item">
-        <div class="roadmap-num">1</div>
+        <div class="roadmap-badge roadmap-badge--next">Up Next</div>
         <div class="roadmap-content">
           <strong>First Community Workshop</strong>
-          <p>Launching FVA's inaugural free civic education session in Pierce or Ware County, covering voter registration, the electoral process, and civil rights.</p>
+          <p>FVA's opening civic education session in Pierce or Ware County. Free to attend, covering voter registration, the electoral process, and how to contact elected officials at every level.</p>
         </div>
       </li>
       <li class="roadmap-item">
-        <div class="roadmap-num">2</div>
+        <div class="roadmap-badge roadmap-badge--filing">Filing Now</div>
         <div class="roadmap-content">
-          <strong>501(c)(3) Registration</strong>
-          <p>Completing formal nonprofit incorporation and filing for federal tax-exempt status, unlocking foundation grants and tax-deductible donations.</p>
+          <strong>501(c)(3) Nonprofit Status</strong>
+          <p>Formal incorporation is underway. Once approved, FVA can apply for foundation grants and donations become tax-deductible — both critical to long-term sustainability.</p>
         </div>
       </li>
       <li class="roadmap-item">
-        <div class="roadmap-num">3</div>
+        <div class="roadmap-badge roadmap-badge--planned">Planned</div>
         <div class="roadmap-content">
-          <strong>Educational Materials Distribution</strong>
-          <p>Producing and distributing plain-language civic education handouts to community centers, libraries, and social service organizations in Pierce and Ware Counties.</p>
+          <strong>Printed Materials in the Field</strong>
+          <p>Plain-language civic education handouts going into community centers, public libraries, food pantries, and social service organizations across Pierce and Ware Counties.</p>
         </div>
       </li>
       <li class="roadmap-item">
-        <div class="roadmap-num">4</div>
+        <div class="roadmap-badge roadmap-badge--horizon">Horizon</div>
         <div class="roadmap-content">
-          <strong>Neighborhood Expansion</strong>
-          <p>Building on early programming to reach additional underserved communities across southern Georgia and beyond.</p>
+          <strong>Reaching More Communities</strong>
+          <p>Once the Pierce and Ware model is established, FVA will take what works and bring it to other underserved neighborhoods across southern Georgia and eventually beyond.</p>
         </div>
       </li>
-    </ol>
+    </ul>
   </div>
 </section>
 
