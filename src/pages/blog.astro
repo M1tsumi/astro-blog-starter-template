@@ -1,0 +1,107 @@
+---
+import { getCollection } from 'astro:content';
+import PageLayout from '../layouts/PageLayout.astro';
+import FormattedDate from '../components/FormattedDate.astro';
+
+const allPosts = await getCollection('blog');
+const posts = allPosts.sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf());
+---
+
+<PageLayout
+	title="Blog"
+	subtitle="Civic Education, Voter Guides, and Resources"
+	description="Practical guides and civic education articles from Future Voters Academy — covering voter registration, how government works, and more."
+>
+	<section>
+		<h2>Articles</h2>
+		{posts.length === 0 ? (
+			<p>No articles have been published yet. Check back soon.</p>
+		) : (
+			<ul class="blog-list">
+				{posts.map((post) => (
+					<li class="blog-item">
+						<div class="blog-meta">
+							<span class="blog-category">{post.data.category}</span>
+							<span class="blog-date"><FormattedDate date={post.data.pubDate} /></span>
+						</div>
+						<a href={`/blog/${post.id.replace(/\.(md|mdx)$/, '')}/`} class="blog-title">{post.data.title}</a>
+						<p class="blog-desc">{post.data.description}</p>
+						<a href={`/blog/${post.id.replace(/\.(md|mdx)$/, '')}/`} class="blog-read-more">Read article &rarr;</a>
+					</li>
+				))}
+			</ul>
+		)}
+	</section>
+
+	<section>
+		<h2>About These Guides</h2>
+		<p>
+			Articles published here are written to be practical and nonpartisan. Our goal is to help
+			people understand the civic processes that affect their lives — from how to register to vote,
+			to how local government makes decisions, to what rights you have as a citizen. If there's a
+			topic you'd like us to cover, reach out through the <a href="/contact">contact page</a>.
+		</p>
+	</section>
+</PageLayout>
+
+<style>
+	.blog-list {
+		list-style: none;
+		padding: 0;
+		margin: 0;
+	}
+	.blog-item {
+		padding: 1.5rem 0;
+		border-bottom: 1px solid rgb(var(--gray-light));
+	}
+	.blog-item:last-child {
+		border-bottom: none;
+	}
+	.blog-meta {
+		display: flex;
+		align-items: center;
+		gap: 0.75rem;
+		margin-bottom: 0.4rem;
+	}
+	.blog-category {
+		font-size: 0.7rem;
+		font-weight: 700;
+		letter-spacing: 0.08em;
+		text-transform: uppercase;
+		background: rgb(var(--black));
+		color: #ffffff;
+		padding: 0.15rem 0.5rem;
+	}
+	.blog-date {
+		font-size: 0.8rem;
+		color: rgb(var(--gray));
+	}
+	.blog-title {
+		display: block;
+		font-size: 1.1rem;
+		font-weight: 700;
+		color: rgb(var(--black));
+		text-decoration: none;
+		margin-bottom: 0.4rem;
+		line-height: 1.35;
+	}
+	.blog-title:hover {
+		color: var(--accent);
+	}
+	.blog-desc {
+		font-size: 0.9rem;
+		line-height: 1.65;
+		color: rgb(var(--gray));
+		margin: 0 0 0.6rem;
+	}
+	.blog-read-more {
+		font-size: 0.8rem;
+		font-weight: 600;
+		color: var(--accent);
+		text-decoration: underline;
+		text-underline-offset: 2px;
+	}
+	.blog-read-more:hover {
+		color: var(--accent-warm);
+	}
+</style>
