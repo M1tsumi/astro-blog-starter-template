@@ -31,7 +31,12 @@ const orgSchema = JSON.stringify({
 <link rel="mask-icon" href="/favicon.svg" color="#1b2a3b" />
 <meta name="generator" content={Astro.generator} />
 
-<!-- Font preloads -->
+<!-- Inter font (Google Fonts) -->
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+
+<!-- Fallback font preloads -->
 <link rel="preload" href="/fonts/atkinson-regular.woff" as="font" type="font/woff" crossorigin />
 <link rel="preload" href="/fonts/atkinson-bold.woff" as="font" type="font/woff" crossorigin />
 

@@ -1,126 +1,199 @@
----
+﻿---
 const today = new Date();
 ---
 
 <footer>
-	<div class="footer-inner">
-		<div class="footer-col footer-brand">
-			<p class="footer-org">Future Voters Academy</p>
-			<p class="footer-mission">Raising funds for free, nonpartisan civic and political education in low-income neighborhoods.</p>
-			<p class="footer-status">Unincorporated Association &mdash; 501(c)(3) Pending</p>
-		</div>
-		<div class="footer-col">
-			<p class="footer-heading">Navigation</p>
-			<ul>
-				<li><a href="/">Home</a></li>
-				<li><a href="/about">About</a></li>
-				<li><a href="/programs">Programs</a></li>
-				<li><a href="/resources">Civic Resources</a></li>
-				<li><a href="/contact">Contact</a></li>
-			</ul>
-		</div>
-		<div class="footer-col">
-			<p class="footer-heading">Support Us</p>
-			<ul>
-				<li><a href="https://gofund.me/99ba920ef" target="_blank" rel="noopener noreferrer">Donate on GoFundMe</a></li>
-			</ul>
-			<p class="footer-heading" style="margin-top:1.5rem">Legal</p>
-			<ul>
-				<li><a href="/privacy">Privacy Policy</a></li>
-			</ul>
-			<p class="footer-heading" style="margin-top:1.5rem">Contact</p>
-			<ul>
-				<li><a href="mailto:fva.info.contact@gmail.com">fva.info.contact@gmail.com</a></li>
-				<li><a href="https://futurevotersacademy.org">futurevotersacademy.org</a></li>
-			</ul>
-			<p class="footer-heading" style="margin-top:1.5rem">Follow Us</p>
-			<ul>
-				<li><a href="https://www.instagram.com/futurevotersacademy" target="_blank" rel="noopener noreferrer">Instagram: @futurevotersacademy</a></li>
-			</ul>
-		</div>
-	</div>
-	<div class="footer-bottom">
-		&copy; {today.getFullYear()} Future Voters Academy. All rights reserved.
-	</div>
+<div class="footer-inner">
+<!-- Column 1: Brand + tagline -->
+<div class="footer-col footer-brand">
+<p class="footer-org">Future Voters Academy</p>
+<p class="footer-mission">
+Free, nonpartisan civic education for low-income neighborhoods in southern Georgia
+and beyond.
+</p>
+<p class="footer-status">Unincorporated Association &mdash; 501(c)(3) Pending</p>
+<a href="https://gofund.me/99ba920ef" target="_blank" rel="noopener noreferrer" class="footer-donate-btn">
+Donate Now
+</a>
+</div>
+
+<!-- Column 2: Navigation -->
+<div class="footer-col">
+<p class="footer-heading">Navigation</p>
+<ul>
+<li><a href="/">Home</a></li>
+<li><a href="/about">About</a></li>
+<li><a href="/programs">Programs</a></li>
+<li><a href="/resources">Civic Resources</a></li>
+<li><a href="/contact">Contact</a></li>
+</ul>
+<p class="footer-heading" style="margin-top:1.75rem;">Legal</p>
+<ul>
+<li><a href="/privacy">Privacy Policy</a></li>
+</ul>
+</div>
+
+<!-- Column 3: Contact + Social -->
+<div class="footer-col">
+<p class="footer-heading">Contact</p>
+<ul>
+<li><a href="mailto:fva.info.contact@gmail.com">fva.info.contact@gmail.com</a></li>
+<li><a href="https://futurevotersacademy.org">futurevotersacademy.org</a></li>
+</ul>
+<p class="footer-heading" style="margin-top:1.75rem;">Follow Us</p>
+<ul>
+<li>
+<a href="https://www.instagram.com/futurevotersacademy" target="_blank" rel="noopener noreferrer" class="social-link">
+<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="vertical-align:-2px; margin-right:0.4rem;">
+<rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect>
+<path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path>
+<line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line>
+</svg>
+@futurevotersacademy
+</a>
+</li>
+</ul>
+<p class="footer-heading" style="margin-top:1.75rem;">Support</p>
+<ul>
+<li><a href="https://gofund.me/99ba920ef" target="_blank" rel="noopener noreferrer">Donate on GoFundMe</a></li>
+</ul>
+</div>
+</div>
+
+<div class="footer-bottom">
+<span>&copy; {today.getFullYear()} Future Voters Academy. All rights reserved.</span>
+<span class="footer-bottom-sep">&middot;</span>
+<span>Southern Georgia</span>
+</div>
 </footer>
 
 <style>
-	footer {
-		background: rgb(var(--black));
-		color: rgb(var(--gray-light));
-		border-top: 3px solid var(--accent-warm);
-		font-size: 0.88rem;
-	}
-	.footer-inner {
-		display: grid;
-		grid-template-columns: 2fr 1fr 1fr;
-		gap: 2rem;
-		max-width: calc(var(--max-width) + 2em);
-		margin: 0 auto;
-		padding: 2.5rem 1rem 2rem;
-	}
-	.footer-org {
-		font-size: 1rem;
-		font-weight: 700;
-		text-transform: uppercase;
-		letter-spacing: 0.05em;
-		color: #ffffff;
-		margin: 0 0 0.5rem 0;
-	}
-	.footer-mission {
-		color: rgba(215, 218, 222, 0.8);
-		line-height: 1.6;
-		margin: 0 0 0.5rem 0;
-		font-size: 0.85rem;
-	}
-	.footer-status {
-		color: rgba(215, 218, 222, 0.55);
-		font-size: 0.78rem;
-		margin: 0;
-		letter-spacing: 0.02em;
-	}
-	.footer-heading {
-		font-size: 0.72rem;
-		text-transform: uppercase;
-		letter-spacing: 0.1em;
-		color: rgba(215, 218, 222, 0.55);
-		margin: 0 0 0.5rem 0;
-		padding-bottom: 0.35rem;
-		border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-	}
-	.footer-col ul {
-		list-style: none;
-		padding: 0;
-		margin: 0;
-	}
-	.footer-col ul li {
-		margin-bottom: 0.4rem;
-		font-size: 0.85rem;
-	}
-	.footer-col ul li:last-child {
-		margin-bottom: 0;
-	}
-	.footer-col a {
-		color: rgba(215, 218, 222, 0.85);
-		text-decoration: none;
-	}
-	.footer-col a:hover {
-		color: #ffffff;
-		text-decoration: underline;
-	}
-	.footer-bottom {
-		border-top: 1px solid rgba(255, 255, 255, 0.08);
-		text-align: center;
-		padding: 1rem;
-		font-size: 0.78rem;
-		color: rgba(215, 218, 222, 0.5);
-		letter-spacing: 0.02em;
-	}
-	@media (max-width: 720px) {
-		.footer-inner {
-			grid-template-columns: 1fr;
-			gap: 1.5rem;
-			padding: 2rem 1rem 1.5rem;
-		}
-	}
+footer {
+background: #0d1821;
+color: rgba(215, 218, 222, 0.82);
+border-top: 4px solid #c9881a;
+font-size: 0.88rem;
+font-family: "Inter", "Atkinson", system-ui, sans-serif;
+}
+.footer-inner {
+display: grid;
+grid-template-columns: 2.2fr 1fr 1.2fr;
+gap: 3rem;
+max-width: calc(var(--wide-width) + 3rem);
+margin: 0 auto;
+padding: 3.5rem 1.5rem 3rem;
+}
+.footer-org {
+font-size: 1rem;
+font-weight: 800;
+text-transform: uppercase;
+letter-spacing: 0.06em;
+color: #ffffff;
+margin: 0 0 0.6rem 0;
+}
+.footer-mission {
+color: rgba(215, 218, 222, 0.7);
+line-height: 1.65;
+margin: 0 0 0.75rem 0;
+font-size: 0.875rem;
+max-width: 280px;
+}
+.footer-status {
+color: rgba(215, 218, 222, 0.42);
+font-size: 0.75rem;
+margin: 0 0 1.25rem;
+letter-spacing: 0.02em;
+}
+.footer-donate-btn {
+display: inline-block;
+background: #c9881a;
+color: #ffffff !important;
+text-decoration: none !important;
+padding: 0.55rem 1.25rem;
+font-size: 0.78rem;
+font-weight: 700;
+text-transform: uppercase;
+letter-spacing: 0.08em;
+border-radius: 4px;
+border: 2px solid #c9881a;
+transition: background 0.15s, border-color 0.15s;
+}
+.footer-donate-btn:hover {
+background: #b07010;
+border-color: #b07010;
+}
+.footer-heading {
+font-size: 0.68rem;
+text-transform: uppercase;
+letter-spacing: 0.12em;
+color: rgba(215, 218, 222, 0.45);
+margin: 0 0 0.75rem 0;
+padding-bottom: 0.4rem;
+border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+font-weight: 600;
+}
+.footer-col ul {
+list-style: none;
+padding: 0;
+margin: 0;
+}
+.footer-col ul li {
+margin-bottom: 0.5rem;
+font-size: 0.875rem;
+line-height: 1.5;
+}
+.footer-col ul li:last-child {
+margin-bottom: 0;
+}
+.footer-col a {
+color: rgba(215, 218, 222, 0.8);
+text-decoration: none;
+transition: color 0.15s;
+}
+.footer-col a:hover {
+color: #ffffff;
+}
+.social-link {
+display: inline-flex;
+align-items: center;
+}
+.footer-bottom {
+background: #070e16;
+border-top: 1px solid rgba(255, 255, 255, 0.06);
+text-align: center;
+padding: 1rem 1.5rem;
+font-size: 0.76rem;
+color: rgba(215, 218, 222, 0.38);
+letter-spacing: 0.02em;
+display: flex;
+justify-content: center;
+align-items: center;
+gap: 0.6rem;
+flex-wrap: wrap;
+}
+.footer-bottom-sep {
+opacity: 0.4;
+}
+@media (max-width: 820px) {
+.footer-inner {
+grid-template-columns: 1fr 1fr;
+gap: 2rem;
+padding: 2.5rem 1.5rem 2rem;
+}
+.footer-brand {
+grid-column: span 2;
+}
+.footer-mission {
+max-width: 100%;
+}
+}
+@media (max-width: 520px) {
+.footer-inner {
+grid-template-columns: 1fr;
+gap: 1.75rem;
+}
+.footer-brand {
+grid-column: span 1;
+}
+}
 </style>

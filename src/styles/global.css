@@ -1,14 +1,15 @@
 /*
   Future Voters Academy — Global Styles
-  Government-minimalist design system
+  Civic-warm design system: deep navy + gold/amber + clean white
  */
 
 :root {
 	--accent: #1b2a3b;
 	--accent-dark: #0d1821;
 	--accent-mid: #2d4a6b;
-	--accent-warm: #b87412;       /* civic amber — energy, optimism, urgency */
-	--accent-warm-light: #fef4df; /* tint for warm-highlighted surfaces */
+	--accent-warm: #c9881a;       /* civic amber — energy, optimism, urgency */
+	--accent-warm-hover: #b07010;
+	--accent-warm-light: #fef9ec; /* tint for warm-highlighted surfaces */
 	--black: 15, 18, 25;
 	--gray: 100, 108, 118;
 	--gray-light: 215, 218, 222;
@@ -16,7 +17,9 @@
 	--gray-dark: 30, 34, 40;
 	--white: 255, 255, 255;
 	--max-width: 860px;
+	--wide-width: 1100px;
 	--box-shadow: 0 2px 8px rgba(27, 42, 59, 0.08);
+	--radius: 4px;
 }
 @font-face {
 	font-family: "Atkinson";
@@ -36,15 +39,15 @@ html {
 	scroll-behavior: smooth;
 }
 body {
-	font-family: "Atkinson", Georgia, serif;
+	font-family: "Inter", "Atkinson", system-ui, sans-serif;
 	margin: 0;
 	padding: 0;
 	text-align: left;
-	background: #fdfcfb; /* warm off-white — softer and more approachable than pure white */
+	background: #ffffff;
 	word-wrap: break-word;
 	overflow-wrap: break-word;
-	color: rgb(var(--gray-dark));
-	font-size: 17px;
+	color: #3b4452;
+	font-size: 16px;
 	line-height: 1.75;
 }
 main {
@@ -60,15 +63,16 @@ h4,
 h5,
 h6 {
 	margin: 0 0 0.5rem 0;
-	color: rgb(var(--black));
+	color: #0d1821;
 	line-height: 1.25;
-	font-family: "Atkinson", Georgia, serif;
+	font-family: "Inter", "Atkinson", system-ui, sans-serif;
+	font-weight: 800;
 }
 h1 {
-	font-size: 2rem;
+	font-size: 2.25rem;
 }
 h2 {
-	font-size: 1.5rem;
+	font-size: 1.6rem;
 }
 h3 {
 	font-size: 1.2rem;
