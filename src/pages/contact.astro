@@ -8,6 +8,45 @@ import PageLayout from '../layouts/PageLayout.astro';
 	description="Contact Future Voters Academy to donate, volunteer, partner, or request information about our nonpartisan civic education programs."
 >
 	<section>
+		<h2>Send Us a Message</h2>
+		<p>
+			Fill out the form below and your email client will open with your message pre-addressed to FVA. We respond to all inquiries within three to five business days.
+		</p>
+		<form class="contact-form" id="contact-form" novalidate>
+			<div class="form-row">
+				<div class="form-group">
+					<label for="cf-name">Your Name <span class="req" aria-hidden="true">*</span></label>
+					<input type="text" id="cf-name" name="name" autocomplete="name" placeholder="First and last name" required />
+				</div>
+				<div class="form-group">
+					<label for="cf-email">Your Email <span class="req" aria-hidden="true">*</span></label>
+					<input type="email" id="cf-email" name="email" autocomplete="email" placeholder="your@email.com" required />
+				</div>
+			</div>
+			<div class="form-group">
+				<label for="cf-subject">Subject <span class="req" aria-hidden="true">*</span></label>
+				<select id="cf-subject" name="subject" required>
+					<option value="" disabled selected>Select a subject&hellip;</option>
+					<option value="Donation Inquiry">Donation Inquiry</option>
+					<option value="Volunteer Interest">Volunteer Interest</option>
+					<option value="Partnership Proposal">Partnership Proposal</option>
+					<option value="Workshop Hosting">Workshop Hosting</option>
+					<option value="Document Request">Document Request</option>
+					<option value="Media Inquiry">Media Inquiry</option>
+					<option value="General Inquiry">General Inquiry</option>
+				</select>
+			</div>
+			<div class="form-group">
+				<label for="cf-message">Message <span class="req" aria-hidden="true">*</span></label>
+				<textarea id="cf-message" name="message" rows="6" placeholder="Tell us how we can help&hellip;" required></textarea>
+			</div>
+			<div class="form-error" id="form-error" role="alert" aria-live="polite" style="display:none;"></div>
+			<button type="submit" class="form-submit">Open in Email App &rarr;</button>
+			<p class="form-note">Clicking the button will open your default email client with this message pre-filled. Your email address is not stored by this website.</p>
+		</form>
+	</section>
+
+	<section>
 		<h2>General Contact Information</h2>
 		<p>
 			Future Voters Academy conducts all correspondence by email. We ask that inquirers use the
@@ -142,4 +181,113 @@ import PageLayout from '../layouts/PageLayout.astro';
 		padding: 0.1rem 0.4rem;
 		white-space: nowrap;
 	}
+
+	/* ── Contact Form ── */
+	.contact-form {
+		margin-top: 1rem;
+		display: flex;
+		flex-direction: column;
+		gap: 1.1rem;
+	}
+	.form-row {
+		display: grid;
+		grid-template-columns: 1fr 1fr;
+		gap: 1rem;
+	}
+	.form-group {
+		display: flex;
+		flex-direction: column;
+		gap: 0.35rem;
+	}
+	.form-group label {
+		font-size: 0.78rem;
+		font-weight: 700;
+		letter-spacing: 0.07em;
+		text-transform: uppercase;
+		color: rgb(var(--black));
+	}
+	.req { color: #c9921a; }
+	.form-group input,
+	.form-group select,
+	.form-group textarea {
+		border: 2px solid rgb(var(--gray-light));
+		padding: 0.65rem 0.85rem;
+		font-size: 0.95rem;
+		font-family: inherit;
+		color: rgb(var(--black));
+		background: #ffffff;
+		width: 100%;
+		outline: none;
+		transition: border-color 0.15s;
+		appearance: none;
+	}
+	.form-group input:focus,
+	.form-group select:focus,
+	.form-group textarea:focus {
+		border-color: rgb(var(--black));
+	}
+	.form-group textarea {
+		resize: vertical;
+		min-height: 130px;
+	}
+	.form-error {
+		background: #fff3f3;
+		border-left: 4px solid #c0392b;
+		padding: 0.65rem 0.9rem;
+		font-size: 0.875rem;
+		color: #c0392b;
+	}
+	.form-submit {
+		align-self: flex-start;
+		background: rgb(var(--black));
+		color: #ffffff;
+		border: none;
+		padding: 0.75rem 1.75rem;
+		font-family: inherit;
+		font-size: 0.875rem;
+		font-weight: 700;
+		letter-spacing: 0.05em;
+		text-transform: uppercase;
+		cursor: pointer;
+		transition: background 0.15s;
+	}
+	.form-submit:hover { background: #2d3748; }
+	.form-note {
+		font-size: 0.8rem;
+		color: rgb(var(--gray));
+		margin: 0;
+		line-height: 1.6;
+	}
+	@media (max-width: 540px) {
+		.form-row { grid-template-columns: 1fr; }
+	}
 </style>
+
+<script>
+const form = document.getElementById('contact-form') as HTMLFormElement;
+const errorEl = document.getElementById('form-error') as HTMLDivElement;
+
+form.addEventListener('submit', (e) => {
+	e.preventDefault();
+	const name    = (document.getElementById('cf-name')    as HTMLInputElement).value.trim();
+	const email   = (document.getElementById('cf-email')   as HTMLInputElement).value.trim();
+	const subject = (document.getElementById('cf-subject') as HTMLSelectElement).value;
+	const message = (document.getElementById('cf-message') as HTMLTextAreaElement).value.trim();
+
+	if (!name || !email || !subject || !message) {
+		errorEl.textContent = 'Please fill in all required fields before continuing.';
+		errorEl.style.display = 'block';
+		return;
+	}
+	if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+		errorEl.textContent = 'Please enter a valid email address.';
+		errorEl.style.display = 'block';
+		return;
+	}
+	errorEl.style.display = 'none';
+
+	const body = `Name: ${name}\nEmail: ${email}\n\n${message}`;
+	const mailto = `mailto:fva.info.contact@gmail.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+	window.location.href = mailto;
+});
+</script>

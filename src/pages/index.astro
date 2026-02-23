@@ -384,6 +384,87 @@ import { SITE_TITLE, SITE_DESCRIPTION, DONATE_URL, CONTACT_EMAIL, INSTAGRAM_URL 
   .hero-ctas { flex-direction: column; align-items: center; }
   .give-banner { flex-direction: column; }
   .section-title { font-size: 1.6rem; }
+  .programs-grid { grid-template-columns: 1fr; }
+}
+
+/* ── PROGRAMS PREVIEW ──────────────────────────────── */
+.programs-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.5rem;
+  margin-top: 2.5rem;
+}
+.program-card {
+  border: 1px solid #dde1e7;
+  border-top: 3px solid #c9921a;
+  padding: 1.75rem;
+  display: flex;
+  flex-direction: column;
+}
+.program-card h3 {
+  font-family: "Inter", system-ui, sans-serif;
+  font-size: 1rem;
+  font-weight: 700;
+  color: #1a2e4a;
+  margin: 0 0 0.5rem;
+}
+.program-card p {
+  font-family: "Inter", system-ui, sans-serif;
+  font-size: 0.875rem;
+  line-height: 1.65;
+  color: #444444;
+  margin: 0 0 1.25rem;
+  flex: 1;
+}
+.program-link {
+  font-family: "Inter", system-ui, sans-serif;
+  font-size: 0.8rem;
+  font-weight: 700;
+  color: #c9921a;
+  text-decoration: underline;
+  text-underline-offset: 2px;
+  align-self: flex-start;
+}
+.program-link:hover { color: #a87a14; }
+
+/* ── TESTIMONIAL ───────────────────────────────────── */
+.testimonial-band {
+  background: #1a2e4a;
+  padding: 72px 40px;
+}
+.testimonial-inner {
+  max-width: 680px;
+  margin: 0 auto;
+  text-align: center;
+}
+.testimonial-mark {
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: 5rem;
+  line-height: 0.6;
+  color: #c9921a;
+  display: block;
+  margin-bottom: 1.5rem;
+}
+.testimonial-text {
+  font-family: "Inter", system-ui, sans-serif;
+  font-size: 1.2rem;
+  font-style: italic;
+  line-height: 1.8;
+  color: #ffffff;
+  margin: 0 0 1.75rem;
+}
+.testimonial-source {
+  font-family: "Inter", system-ui, sans-serif;
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: rgba(201,146,26,0.9);
+}
+.testimonial-source span {
+  color: rgba(255,255,255,0.5);
+  font-weight: 400;
+  margin-left: 0.5rem;
 }
 </style>
 </head>
@@ -394,10 +475,9 @@ import { SITE_TITLE, SITE_DESCRIPTION, DONATE_URL, CONTACT_EMAIL, INSTAGRAM_URL 
 <!-- HERO -->
 <section class="hero" aria-label="Hero">
   <span class="hero-location">Pierce &amp; Ware Counties, Georgia</span>
-  <h1>Empowering Communities Through Civic Education</h1>
+  <h1>Every Community Deserves a Voice. We&rsquo;re Here to Help.</h1>
   <p class="hero-sub">
-    Free, nonpartisan civic education for residents of low-income neighborhoods.
-    Every person deserves the knowledge to participate fully in their democracy.
+    Future Voters Academy brings free, nonpartisan civic education directly to low-income neighborhoods &mdash; because knowing how democracy works shouldn&rsquo;t depend on your zip code.
   </p>
   <div class="hero-ctas">
     <a class="btn-gold" href="/donate">Donate Now</a>
@@ -433,6 +513,8 @@ import { SITE_TITLE, SITE_DESCRIPTION, DONATE_URL, CONTACT_EMAIL, INSTAGRAM_URL 
   </div>
 </section>
 
+<!-- IMPACT NUMBERS removed — to be added once real data is available -->
+
 <!-- HOW IT WORKS -->
 <section class="section bg-white">
   <div class="inner">
@@ -458,6 +540,32 @@ import { SITE_TITLE, SITE_DESCRIPTION, DONATE_URL, CONTACT_EMAIL, INSTAGRAM_URL 
         <span class="step-tag">Growth</span>
         <h3 class="step-title">Expanding the Reach</h3>
         <p class="step-desc">We grow our donor base and work toward formal nonprofit recognition so the model can spread to more communities over time.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PROGRAMS PREVIEW -->
+<section class="section bg-gray">
+  <div class="inner">
+    <span class="eyebrow">What We Offer</span>
+    <h2 class="section-title">Our Programs</h2>
+    <p class="body-text">Every FVA program is free to attend and built for people with no prior political background. No party affiliation. No agenda. Just the facts.</p>
+    <div class="programs-grid">
+      <div class="program-card">
+        <h3>Voter Education Workshops</h3>
+        <p>Free, in-person sessions covering how to register, what&rsquo;s on your ballot, election deadlines, and how to find and contact your elected officials at every level of government.</p>
+        <a class="program-link" href="/programs">More about workshops &rarr;</a>
+      </div>
+      <div class="program-card">
+        <h3>Civic Materials Library</h3>
+        <p>Plain-language printed guides on voting rights, government structure, and the electoral process. Distributed free to community centers, libraries, food pantries, and housing developments.</p>
+        <a class="program-link" href="/programs">More about materials &rarr;</a>
+      </div>
+      <div class="program-card">
+        <h3>Community Outreach</h3>
+        <p>We go where residents already are &mdash; partnering with local organizations and civic groups to bring civic education into existing community spaces.</p>
+        <a class="program-link" href="/programs">More about outreach &rarr;</a>
       </div>
     </div>
   </div>

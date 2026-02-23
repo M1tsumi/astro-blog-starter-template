@@ -1,5 +1,5 @@
 ﻿---
-import { DONATE_URL, CONTACT_EMAIL, INSTAGRAM_URL, INSTAGRAM_HANDLE } from '../consts';
+import { DONATE_URL, CONTACT_EMAIL, INSTAGRAM_URL, INSTAGRAM_HANDLE, FACEBOOK_URL, TWITTER_URL, LINKEDIN_URL } from '../consts';
 const today = new Date();
 ---
 
@@ -25,6 +25,8 @@ Donate Now
 <li><a href="/about">About</a></li>
 <li><a href="/programs">Programs</a></li>
 <li><a href="/news">News &amp; Updates</a></li>
+<li><a href="/blog">Blog</a></li>
+<li><a href="/elections">Find My Election</a></li>
 <li><a href="/resources">Civic Resources</a></li>
 <li><a href="/contact">Contact</a></li>
 </ul>
@@ -43,15 +45,29 @@ Donate Now
 <li><a href="https://futurevotersacademy.org">futurevotersacademy.org</a></li>
 </ul>
 <p class="footer-heading" style="margin-top:1.75rem;">Follow Us</p>
-<ul>
+<ul class="social-list">
 <li>
-<a href={INSTAGRAM_URL} target="_blank" rel="noopener noreferrer" class="social-link">
-<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="vertical-align:-2px; margin-right:0.4rem;">
-<rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect>
-<path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path>
-<line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line>
-</svg>
-@futurevotersacademy
+<a href={INSTAGRAM_URL} target="_blank" rel="noopener noreferrer" class="social-link" aria-label="Instagram">
+<svg xmlns="http://www.w3.org/2000/svg" width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line></svg>
+Instagram
+</a>
+</li>
+<li>
+<a href={FACEBOOK_URL} target="_blank" rel="noopener noreferrer" class="social-link" aria-label="Facebook">
+<svg xmlns="http://www.w3.org/2000/svg" width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"></path></svg>
+Facebook
+</a>
+</li>
+<li>
+<a href={TWITTER_URL} target="_blank" rel="noopener noreferrer" class="social-link" aria-label="X / Twitter">
+<svg xmlns="http://www.w3.org/2000/svg" width="17" height="17" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-4.714-6.231-5.401 6.231H2.747l7.73-8.835L1.254 2.25H8.08l4.261 5.636 5.904-5.636zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+X
+</a>
+</li>
+<li>
+<a href={LINKEDIN_URL} target="_blank" rel="noopener noreferrer" class="social-link" aria-label="LinkedIn">
+<svg xmlns="http://www.w3.org/2000/svg" width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path><rect x="2" y="9" width="4" height="12"></rect><circle cx="4" cy="4" r="2"></circle></svg>
+LinkedIn
 </a>
 </li>
 </ul>
@@ -66,6 +82,8 @@ Donate Now
 <span>&copy; {today.getFullYear()} Future Voters Academy. All rights reserved.</span>
 <span class="footer-bottom-sep">&middot;</span>
 <span>Southern Georgia</span>
+<span class="footer-bottom-sep">&middot;</span>
+<span class="footer-legal-notice">Donations are not tax-deductible. 501(c)(3) pending.</span>
 </div>
 </footer>
 
@@ -155,9 +173,25 @@ transition: color 0.15s;
 .footer-col a:hover {
 color: #ffffff;
 }
+.social-list {
+list-style: none;
+padding: 0;
+margin: 0;
+display: flex;
+flex-direction: column;
+gap: 0.5rem;
+}
 .social-link {
 display: inline-flex;
 align-items: center;
+gap: 0.5rem;
+}
+.social-link svg {
+flex-shrink: 0;
+}
+.footer-legal-notice {
+color: rgba(215, 218, 222, 0.28);
+font-style: italic;
 }
 .footer-bottom {
 background: #070e16;
