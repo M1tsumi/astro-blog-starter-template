@@ -4,7 +4,6 @@ import BaseHead from '../../components/BaseHead.astro';
 import Header from '../../components/Header.astro';
 import Footer from '../../components/Footer.astro';
 import FormattedDate from '../../components/FormattedDate.astro';
-import AdsterraAd from '../../components/AdsterraAd.astro';
 
 export async function getStaticPaths() {
 	const posts = await getCollection('blog');
@@ -27,6 +26,8 @@ const { Content } = await render(post);
 			title={`${post.data.title} | Future Voters Academy`}
 			description={post.data.description}
 		/>
+		<!-- Adsterra Popunder -->
+		<script is:inline src="https://pl28796291.effectivegatecpm.com/92/98/80/92988071e6e42552723d9a3ce094e46e.js"></script>
 	</head>
 	<body>
 		<Header />
@@ -43,7 +44,19 @@ const { Content } = await render(post);
 			<div class="post-body">
 				<Content />
 			</div>
-			<AdsterraAd />
+			<!-- Adsterra Banner Ad -->
+			<div class="ad-container">
+				<script is:inline>
+					atOptions = {
+						'key' : '0979dde071f0674cbe2b7d32766fab64',
+						'format' : 'iframe',
+						'height' : 60,
+						'width' : 468,
+						'params' : {}
+					};
+				</script>
+				<script is:inline src="https://www.highperformanceformat.com/0979dde071f0674cbe2b7d32766fab64/invoke.js"></script>
+			</div>
 			<div class="post-footer">
 				<a href="/blog" class="back-link">&larr; All Articles</a>
 			</div>
@@ -158,5 +171,12 @@ const { Content } = await render(post);
 	}
 	.back-link:hover {
 		color: var(--accent-warm);
+	}
+	.ad-container {
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		margin: 2.5rem 0 1.5rem;
+		min-height: 60px;
 	}
 </style>
