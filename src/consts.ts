@@ -12,7 +12,4 @@ export const DONATE_URL = "https://gofund.me/99ba920ef";
 export const CONTACT_EMAIL = "fva.info.contact@gmail.com";
 export const INSTAGRAM_URL = "https://www.instagram.com/futurevotersacademy";
 export const INSTAGRAM_HANDLE = "@futurevotersacademy";
-export const FACEBOOK_URL = "https://www.facebook.com/futurevotersacademy";
-export const TWITTER_URL = "https://x.com/futurevotersac";
-export const LINKEDIN_URL = "https://www.linkedin.com/company/future-voters-academy";
 export const OG_IMAGE = "/og-image.png";
